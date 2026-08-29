@@ -48,7 +48,7 @@ export default function Step1DatosPersonales({ onNext, onBack }: { onNext: () =>
                 Nombre
               </label>
               <input
-                className="bg-surface-container-lowest border border-tertiary rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                className="w-full bg-surface-container-lowest border border-tertiary rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
                 id="first_name"
                 name="first_name"
                 placeholder="Ej. Juan"
