@@ -116,6 +116,29 @@ Todas las vistas fueron mapeadas directamente desde las carpetas exportadas en `
 
 ---
 
+## 👥 Usuarios de Prueba (Credenciales Demo)
+
+La plataforma cuenta con un sistema de inicio de sesión directo con selector rápido en [`/auth/login`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/auth/login/page.tsx) y credenciales preconfiguradas para explorar cada rol y sus dashboards:
+
+| Rol | Correo Electrónico | Contraseña | Dashboard / Módulo Principal |
+| :--- | :--- | :--- | :--- |
+| **Talento** | `alejandro@talento.com` | `talento123` | [`/talento/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/talento/dashboard) (Métricas de perfil, vacantes, postulaciones) |
+| **Empresa** | `techhive@empresa.com` | `empresa123` | [`/empresa/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/empresa/dashboard) (Gestión de vacantes, candidatos y perfil) |
+| **Institución** | `rectoria@nodo.edu` | `institucion123` | [`/institucion/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/institucion/dashboard) (Programas, validaciones de egresados, mapa) |
+| **Mentor** | `mentor@puntoclick.com` | `mentor123` | [`/mentores/diagnostico`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/mentores/diagnostico) (Diagnóstico de habilidades, sesiones) |
+| **Administrador** | `admin@puntoclick.com` | `admin123` | [`/admin/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/admin/dashboard) (Control de usuarios y aprobación de instituciones) |
+
+---
+
+## 🇳🇮 Adaptación Territorial — Nicaragua
+
+Todos los selectores geográficos, mapas y formularios de registro han sido configurados con la división político-administrativa de **Nicaragua**:
+- **17 Departamentos y Regiones Autónomas**: Managua, León, Matagalpa, Estelí, Chinandega, Masaya, Granada, Rivas, Carazo, Jinotega, Nueva Segovia, Madriz, Boaco, Chontales, Río San Juan, RACCN y RACCS.
+- **Ciudades y Municipios principales**: Managua, Ciudad Sandino, Tipitapa, León, Matagalpa, Estelí, Chinandega, Masaya, Granada, Rivas, Jinotepe, San Juan del Sur, Bluefields, Puerto Cabezas (Bilwi).
+- **Marco Legal**: Cumplimiento con la **Ley N° 787** de Protección de Datos Personales de Nicaragua.
+
+---
+
 ## 💻 Instrucciones de Instalación y Uso Local
 
 ### 1. Requisitos Previos

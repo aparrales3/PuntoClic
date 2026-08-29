@@ -163,28 +163,34 @@ export default function LoginPage() {
             </button>
           </form>
 
+          {/* Neon Auth Ecosystem Badge */}
+          <div className="mb-4 flex items-center justify-center gap-1.5 py-1 px-3 bg-secondary-container/60 text-on-secondary-container rounded-full text-[11px] font-semibold">
+            <span className="material-symbols-outlined text-[14px]">encrypted</span>
+            <span>Protegido por <strong>Neon Auth</strong> • PuntoClic</span>
+          </div>
+
           <div className="mt-lg">
             <div className="relative flex items-center mb-md">
               <div className="flex-grow border-t border-tertiary-fixed-dim" />
               <span className="flex-shrink-0 mx-4 text-on-surface-variant font-label-sm text-label-sm">
-                o continuar con
+                o continuar con Neon Auth
               </span>
               <div className="flex-grow border-t border-tertiary-fixed-dim" />
             </div>
 
             <div className="flex flex-col space-y-sm">
-              <button
-                type="button"
+              <a
+                href="https://ep-odd-haze-axvf0t5j.neonauth.c-4.us-east-2.aws.neon.tech/neondb/auth/sign-in/social?provider=google&callbackURL=http://localhost:3000/talento/dashboard"
                 className="w-full flex items-center justify-center bg-surface-container-lowest border border-outline-variant rounded-lg py-2.5 px-4 font-label-md text-label-md text-on-surface hover:bg-surface-container-highest transition-colors shadow-sm cursor-pointer"
               >
-                <span className="material-symbols-outlined mr-2 text-primary">login</span> Google
-              </button>
-              <button
-                type="button"
+                <span className="material-symbols-outlined mr-2 text-primary">login</span> Continuar con Google (Neon Auth)
+              </a>
+              <a
+                href="https://ep-odd-haze-axvf0t5j.neonauth.c-4.us-east-2.aws.neon.tech/neondb/auth/sign-in/social?provider=github&callbackURL=http://localhost:3000/talento/dashboard"
                 className="w-full flex items-center justify-center bg-surface-container-lowest border border-outline-variant rounded-lg py-2.5 px-4 font-label-md text-label-md text-on-surface hover:bg-surface-container-highest transition-colors shadow-sm cursor-pointer"
               >
-                <span className="material-symbols-outlined mr-2 text-[#0077b5]">work</span> LinkedIn
-              </button>
+                <span className="material-symbols-outlined mr-2 text-[#24292e]">code</span> Continuar con GitHub (Neon Auth)
+              </a>
             </div>
           </div>
 
@@ -198,6 +204,15 @@ export default function LoginPage() {
                 Crear cuenta
               </Link>
             </p>
+            <div className="mt-4 pt-3 border-t border-surface-container-highest flex items-center justify-center gap-3 text-label-sm text-on-surface-variant">
+              <Link href="/terminos" className="hover:text-primary underline transition-colors">
+                Términos
+              </Link>
+              <span>•</span>
+              <Link href="/privacidad" className="hover:text-primary underline transition-colors">
+                Privacidad
+              </Link>
+            </div>
           </div>
         </div>
       </main>

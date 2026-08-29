@@ -107,8 +107,12 @@ export default function Step1DatosPersonales({ onNext, onBack }: { onNext: () =>
           </button>
           <p className="text-center font-label-sm text-label-sm text-on-surface-variant mt-sm">
             Al continuar, aceptas nuestros{' '}
-            <Link href="#" className="text-primary underline hover:text-primary-fixed-dim transition-colors">
+            <Link href="/terminos" className="text-primary underline hover:text-primary-fixed-dim transition-colors font-medium">
               Términos de servicio
+            </Link>{' '}
+            y nuestra{' '}
+            <Link href="/privacidad" className="text-primary underline hover:text-primary-fixed-dim transition-colors font-medium">
+              Política de Privacidad
             </Link>.
           </p>
         </div>

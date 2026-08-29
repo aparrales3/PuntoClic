@@ -57,6 +57,20 @@ function SolicitudInstitucionalContent() {
       setCurrentStep(currentStep + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
+      // Send confirmation email via Resend
+      if (formData.repEmail) {
+        fetch('/api/email/send', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'welcome',
+            to: formData.repEmail,
+            name: formData.name || formData.repName || 'Institución',
+            role: 'institucion',
+          }),
+        }).catch((err) => console.error('[Institution email error]:', err));
+      }
+
       // Final submit
       router.push('/institucion/estado-solicitud');
     }
@@ -588,6 +602,20 @@ function SolicitudInstitucionalContent() {
                     </div>
                     <p className="text-body-md text-on-surface">
                       {formData.address || 'Sede Principal'}, {formData.city}, {formData.department}
+                    </p>
+                  </div>
+
+                  <div className="p-4 bg-surface-container rounded-xl border border-surface-variant text-center">
+                    <p className="text-body-sm text-on-surface-variant">
+                      Al remitir esta solicitud institucional, la entidad acepta los{' '}
+                      <Link href="/terminos" target="_blank" className="text-primary underline hover:text-primary-fixed-dim font-bold">
+                        Términos y Condiciones
+                      </Link>{' '}
+                      y la{' '}
+                      <Link href="/privacidad" target="_blank" className="text-primary underline hover:text-primary-fixed-dim font-bold">
+                        Política de Tratamiento de Datos
+                      </Link>{' '}
+                      de PuntoClic.
                     </p>
                   </div>
                 </div>

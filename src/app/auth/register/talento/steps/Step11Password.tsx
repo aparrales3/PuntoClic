@@ -2,6 +2,7 @@
 
 import { useRegistrationStore } from '@/store/registrationStore';
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Step11Password({ onNext, onBack }: { onNext: () => void, onBack: () => void }) {
   const { talentData, setTalentData } = useRegistrationStore();
@@ -38,6 +39,21 @@ export default function Step11Password({ onNext, onBack }: { onNext: () => void,
       return;
     }
     setTalentData({ password });
+
+    // Send welcome email in background via Resend
+    if (talentData.email) {
+      fetch('/api/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'welcome',
+          to: talentData.email,
+          name: talentData.firstName || 'Talento',
+          role: 'talento',
+        }),
+      }).catch((err) => console.error('[Welcome email failed]:', err));
+    }
+
     onNext();
   };
 
@@ -168,7 +184,18 @@ export default function Step11Password({ onNext, onBack }: { onNext: () => void,
             </ul>
           </div>
 
-          <div className="mt-auto pt-lg pb-md">
+          <p className="text-center font-label-sm text-label-sm text-on-surface-variant my-3">
+            Al finalizar, confirmas que aceptas nuestros{' '}
+            <Link href="/terminos" target="_blank" className="text-primary underline hover:text-primary-fixed-dim font-bold">
+              Términos de servicio
+            </Link>{' '}
+            y la{' '}
+            <Link href="/privacidad" target="_blank" className="text-primary underline hover:text-primary-fixed-dim font-bold">
+              Política de Privacidad
+            </Link>.
+          </p>
+
+          <div className="mt-auto pt-sm pb-md">
             <button 
               type="submit"
               className="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-4 rounded-lg shadow-sm hover:opacity-90 transition-opacity flex justify-center items-center gap-2 active:scale-95 duration-150 font-bold"

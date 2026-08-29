@@ -92,6 +92,17 @@ export default function WelcomePage() {
                 Regístrate aquí
               </Link>
             </div>
+
+            {/* Legal Footer Links */}
+            <div className="mt-6 pt-4 border-t border-surface-variant/40 flex items-center justify-center gap-4 text-label-sm text-on-surface-variant">
+              <Link href="/terminos" className="hover:text-primary transition-colors underline">
+                Términos y Condiciones
+              </Link>
+              <span>•</span>
+              <Link href="/privacidad" className="hover:text-primary transition-colors underline">
+                Privacidad
+              </Link>
+            </div>
           </div>
         </div>
 

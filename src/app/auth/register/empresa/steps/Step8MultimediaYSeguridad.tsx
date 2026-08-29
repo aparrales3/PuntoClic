@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 interface StepProps {
   onNext: () => void;
@@ -27,6 +28,19 @@ export default function Step8MultimediaYSeguridad({ onNext, onBack }: StepProps)
       alert('Las contraseñas no coinciden');
       return;
     }
+
+    // Trigger welcome email via Resend
+    fetch('/api/email/send', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'welcome',
+        to: 'contacto@empresa.com',
+        name: 'Empresa Aliada',
+        role: 'empresa',
+      }),
+    }).catch((err) => console.error('[Company email error]:', err));
+
     onNext();
   };
 
@@ -124,6 +138,18 @@ export default function Step8MultimediaYSeguridad({ onNext, onBack }: StepProps)
               </div>
             </div>
           </section>
+
+          <p className="text-center font-label-sm text-label-sm text-on-surface-variant">
+            Al registrar tu empresa, aceptas los{' '}
+            <Link href="/terminos" target="_blank" className="text-primary underline hover:text-primary-fixed-dim transition-colors font-medium">
+              Términos y Condiciones
+            </Link>{' '}
+            y la{' '}
+            <Link href="/privacidad" target="_blank" className="text-primary underline hover:text-primary-fixed-dim transition-colors font-medium">
+              Política de Privacidad
+            </Link>{' '}
+            de PuntoClic Nicaragua.
+          </p>
 
           {/* Actions */}
           <div className="pt-lg flex flex-col md:flex-row gap-sm md:justify-between items-center border-t border-surface-variant">

@@ -1,12 +1,54 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Recuperar contraseña - PUNTOCLICK',
-  description: 'Ingresa tu correo electrónico para restablecer tu contraseña.',
-};
+import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function RecuperarContrasenaPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [sentSuccess, setSentSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    try {
+      // Generate a 6-digit verification code
+      const generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+      const res = await fetch('/api/email/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'recovery',
+          to: email,
+          name: email.split('@')[0],
+          code: generatedCode,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'No se pudo enviar el correo.');
+      }
+
+      setSentSuccess(true);
+      setTimeout(() => {
+        router.push(`/auth/codigo-recuperacion?email=${encodeURIComponent(email)}`);
+      }, 1500);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Error al procesar solicitud';
+      setError(msg);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="bg-background text-on-background min-h-screen flex flex-col font-body-md">
       {/* Top Header */}
@@ -32,15 +74,30 @@ export default function RecuperarContrasenaPage() {
             <div className="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center mb-base text-secondary self-center">
               <span className="material-symbols-outlined text-[32px]">lock_reset</span>
             </div>
-            <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface text-center md:font-headline-lg md:text-headline-lg">
+            <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-on-surface text-center md:font-headline-lg md:text-headline-lg font-bold">
               Recuperar Contraseña
             </h2>
             <p className="font-body-md text-body-md text-on-surface-variant text-center mb-md">
-              Ingresa la dirección de correo electrónico asociada a tu cuenta. Te enviaremos un código para restablecer tu contraseña.
+              Ingresa la dirección de correo electrónico asociada a tu cuenta. Te enviaremos un código para restablecer tu contraseña vía Resend.
             </p>
-            <form action="/auth/codigo-recuperacion" className="flex flex-col gap-md">
+
+            {error && (
+              <div className="p-3 bg-red-50 text-red-700 text-sm rounded-lg border border-red-200 flex items-center gap-2">
+                <span className="material-symbols-outlined text-base">error</span>
+                <span>{error}</span>
+              </div>
+            )}
+
+            {sentSuccess && (
+              <div className="p-3 bg-green-50 text-green-700 text-sm rounded-lg border border-green-200 flex items-center gap-2">
+                <span className="material-symbols-outlined text-base">check_circle</span>
+                <span>¡Código enviado! Redirigiendo...</span>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="flex flex-col gap-md">
               <div className="flex flex-col gap-xs">
-                <label className="font-label-md text-label-md text-on-surface" htmlFor="email">
+                <label className="font-label-md text-label-md text-on-surface font-medium" htmlFor="email">
                   Correo electrónico
                 </label>
                 <div className="relative">
@@ -54,15 +111,20 @@ export default function RecuperarContrasenaPage() {
                     placeholder="nombre@ejemplo.com"
                     required
                     type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
               </div>
               <button
-                className="w-full bg-primary text-on-primary font-label-md text-label-md py-3 px-4 rounded-lg hover:bg-surface-tint hover:opacity-90 active:scale-[0.98] transition-all flex justify-center items-center gap-2 shadow-sm mt-xs"
+                disabled={loading || sentSuccess}
+                className="w-full bg-primary text-on-primary font-label-md text-label-md py-3 px-4 rounded-lg hover:bg-surface-tint hover:opacity-90 active:scale-[0.98] transition-all flex justify-center items-center gap-2 shadow-sm mt-xs font-bold disabled:opacity-50 cursor-pointer"
                 type="submit"
               >
-                Enviar código
-                <span className="material-symbols-outlined text-[18px]">send</span>
+                <span>{loading ? 'Enviando código...' : 'Enviar código con Resend'}</span>
+                <span className="material-symbols-outlined text-[18px]">
+                  {loading ? 'hourglass_top' : 'send'}
+                </span>
               </button>
             </form>
           </div>
@@ -71,3 +133,4 @@ export default function RecuperarContrasenaPage() {
     </div>
   );
 }
+
