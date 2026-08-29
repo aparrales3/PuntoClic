@@ -37,11 +37,9 @@ export default function MatchTalentoPage() {
           {/* Candidate 1 */}
           <div className="bg-surface-container-lowest rounded-xl p-md md:p-lg shadow-ambient border border-surface-variant flex flex-col justify-between hover:shadow-ambient-md transition-shadow">
             <div className="flex items-start gap-md mb-md">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYqyoywSy1r4UXioPwLS-aXM7-C3FwOda9FoC0IUWZ_LCCaDtMXpBvuXkJ_AKFjG8B5BHlb8K4T8wfcyv5qf4gaw11IOiZ8Q7L9k64r7hrZ9Q4yBa90yTPrFeEIDmeHuEs95Zm0_s8CTwFeOs5kz78C1eEpt8o9kmkO0WfCO684NVf4HcCnmJYLjMrRIRhPIw67f3MMybRJt1Tk_KhDnMrEiWWt6lIEwov-DosPSbaFU4RpQAkdsz1"
-                alt="Ana Martínez"
-                className="w-16 h-16 rounded-full object-cover border-2 border-secondary-container"
-              />
+              <div className="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-xl border-2 border-secondary-fixed shrink-0">
+                AM
+              </div>
               <div className="flex-1">
                 <div className="flex justify-between items-center">
                   <h3 className="font-headline-md text-headline-md font-bold text-on-background">
@@ -72,11 +70,9 @@ export default function MatchTalentoPage() {
           {/* Candidate 2 */}
           <div className="bg-surface-container-lowest rounded-xl p-md md:p-lg shadow-ambient border border-surface-variant flex flex-col justify-between hover:shadow-ambient-md transition-shadow">
             <div className="flex items-start gap-md mb-md">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVcSejuFdo5__-11rXb_0oEJ6PYq-7IVQw2iRe1AxJjguDB3pEKDwtvp2rndnCyslG3r90QfPJckZ9UpN2m_GhW_BE5lMN35pXox0fJNvQlB8B_V0PnPFS6y0TFokNNAov0jrhxg6yi_rsWnbJBAJ6mgfF-flEdD2hOTsyVGfcojvIPeMg8QEm8dHehd-tbi1GMCt-G_DziFPbassBJc1uJ3r39NkWbBhJdJVGpIETVlOO17kiz0WY"
-                alt="Carlos Silva"
-                className="w-16 h-16 rounded-full object-cover border-2 border-primary-container"
-              />
+              <div className="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-xl border-2 border-primary-fixed-dim shrink-0">
+                CS
+              </div>
               <div className="flex-1">
                 <div className="flex justify-between items-center">
                   <h3 className="font-headline-md text-headline-md font-bold text-on-background">

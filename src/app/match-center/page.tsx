@@ -9,194 +9,241 @@ export const metadata: Metadata = {
 export default function MatchCenterPage() {
   return (
     <div className="bg-background text-on-background min-h-screen flex flex-col font-body-md">
-      {/* Top Header */}
-      <header className="sticky top-0 z-40 bg-background shadow-sm flex justify-between items-center w-full px-margin-mobile py-base">
-        <Link
-          href="/"
-          className="text-primary hover:bg-surface-container-high transition-colors p-2 rounded-full"
-          aria-label="Volver a inicio"
-        >
-          <span className="material-symbols-outlined">arrow_back</span>
-        </Link>
-        <h1 className="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">
-          PUNTOCLICK MATCH CENTER
-        </h1>
-        <div className="w-10" aria-hidden="true" />
-      </header>
-
-      <main className="max-w-container-max mx-auto p-margin-mobile md:p-md lg:p-lg w-full flex-grow">
+      <main className="max-w-container-max mx-auto p-margin-mobile md:p-md lg:p-lg w-full flex-grow pb-24 md:pb-lg">
         {/* Header Section */}
-        <div className="mb-xl text-center md:text-left">
-          <h2 className="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-2">
+        <div className="mb-xl">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="material-symbols-outlined text-primary text-2xl" style={{ fontVariationSettings: "'FILL' 1" }}>
+              hub
+            </span>
+            <span className="text-label-sm font-bold text-primary tracking-wider uppercase">
+              Ecosistema de Conexiones
+            </span>
+          </div>
+          <h1 className="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-primary mb-2 font-bold">
             Match Center
-          </h2>
+          </h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant">
-            Descubre tus conexiones ideales en el ecosistema.
+            Descubre tus conexiones ideales. Afinidad inteligente entre talento, empresas e instituciones.
           </p>
         </div>
 
         {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-sm md:gap-md">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-md">
           {/* Empresa Card */}
-          <div className="md:col-span-4 bg-surface rounded-xl shadow-ambient border border-surface-container p-md flex flex-col items-center text-center relative overflow-hidden group">
-            <div className="absolute top-0 left-0 w-full h-24 bg-surface-container-high z-0"></div>
-            <div className="z-10 relative mb-4">
-              <img
-                className="w-20 h-20 rounded-xl object-cover border-4 border-surface shadow-sm"
-                alt="EcoTech Solutions Logo"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD__AAjVtyr-I-PTs2rW21kayYUpUr9dTayr5MnMk6DKKheA6M1UKrqSuk-DSizLmKzjDRksaUNUWMq6zvhP8JPyf7K5In_JgI3D4hStXUCe1b7sBJenW_I_ErUnx5cXUj4XWUlDv6lduOMC9UG_jDvEfShtqcAWHqzGNY15ie4201-cHlgO06kaZQMaj44ZoyfbbvXnkMpNA0mXcr0XTXZBhYNGjPDiRrS30rrI1swfJvqX8LkY0_e"
-              />
+          <div className="md:col-span-4 bg-surface-container-lowest rounded-2xl shadow-ambient border border-surface-container p-md flex flex-col items-center text-center relative overflow-hidden group hover:shadow-ambient-md transition-all">
+            <div className="absolute top-0 left-0 w-full h-20 bg-secondary-container/40 z-0 rounded-t-2xl" />
+            <div className="z-10 relative mb-4 mt-4">
+              <div className="w-20 h-20 rounded-2xl bg-secondary-container text-on-secondary-container border-4 border-surface shadow-xs flex items-center justify-center font-bold text-2xl">
+                ET
+              </div>
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full border-2 border-surface flex items-center justify-center">
+                <span className="material-symbols-outlined text-white text-xs">check</span>
+              </div>
             </div>
-            <h3 className="font-headline-md text-headline-md text-on-background z-10">
+            <h3 className="font-headline-md text-headline-md text-on-background z-10 font-bold">
               EcoTech Solutions
             </h3>
             <p className="font-body-md text-body-md text-on-surface-variant mb-4 z-10">
               Startup de Energía Renovable
             </p>
             <div className="flex flex-wrap justify-center gap-2 mb-4 z-10">
-              <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-xl font-label-sm text-label-sm">
+              <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold">
                 Sostenibilidad
               </span>
-              <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-xl font-label-sm text-label-sm">
+              <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold">
                 Innovación
               </span>
+              <span className="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold">
+                Managua
+              </span>
             </div>
-            <button className="mt-auto w-full border-2 border-outline text-on-surface py-2 rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors z-10">
-              Ver Perfil
-            </button>
+            <Link
+              href="/match-talento"
+              className="mt-auto w-full border-2 border-primary text-primary py-2.5 rounded-xl font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors z-10 font-bold text-center"
+            >
+              Ver Perfil Corporativo
+            </Link>
           </div>
 
-          {/* Compatibilidad / Match Score */}
-          <div className="md:col-span-4 bg-primary-container rounded-xl shadow-ambient p-md flex flex-col items-center justify-center text-center text-on-primary-container relative">
+          {/* Match Score Card */}
+          <div className="md:col-span-4 bg-primary-container rounded-2xl shadow-ambient p-md flex flex-col items-center justify-center text-center text-on-primary-container relative overflow-hidden">
             <div
               className="absolute inset-0 opacity-10"
               style={{
-                backgroundImage:
-                  'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
+                backgroundImage: 'radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)',
                 backgroundSize: '16px 16px',
               }}
-            ></div>
-            <h3 className="font-headline-lg-mobile text-headline-lg-mobile mb-2 relative z-10">
+            />
+            <span className="material-symbols-outlined text-4xl mb-2 relative z-10" style={{ fontVariationSettings: "'FILL' 1" }}>
+              handshake
+            </span>
+            <h3 className="font-headline-lg-mobile text-headline-lg-mobile mb-2 relative z-10 font-bold">
               Índice de Afinidad
             </h3>
-            <div className="relative w-32 h-32 flex items-center justify-center mb-4 z-10">
-              <svg
-                className="w-full h-full transform -rotate-90 absolute inset-0"
-                viewBox="0 0 100 100"
-              >
+            {/* Circular progress */}
+            <div className="relative w-36 h-36 flex items-center justify-center mb-4 z-10">
+              <svg className="w-full h-full transform -rotate-90 absolute inset-0" viewBox="0 0 100 100">
                 <circle
                   className="opacity-20"
-                  cx="50"
-                  cy="50"
-                  fill="none"
-                  r="45"
-                  stroke="currentColor"
-                  strokeWidth="8"
-                ></circle>
+                  cx="50" cy="50" fill="none" r="42"
+                  stroke="currentColor" strokeWidth="8"
+                />
                 <circle
-                  className="text-primary"
-                  cx="50"
-                  cy="50"
-                  fill="none"
-                  r="45"
+                  cx="50" cy="50" fill="none" r="42"
                   stroke="currentColor"
-                  strokeDasharray="283"
-                  strokeDashoffset="28.3"
+                  strokeDasharray="264"
+                  strokeDashoffset="26.4"
                   strokeWidth="8"
-                ></circle>
+                  strokeLinecap="round"
+                />
               </svg>
-              <span className="font-headline-xl text-headline-xl font-bold">
-                90%
-              </span>
+              <div className="text-center">
+                <span className="font-headline-xl text-headline-xl font-bold block leading-none">90%</span>
+                <span className="text-label-sm font-semibold opacity-80">match</span>
+              </div>
             </div>
-            <p className="font-body-md text-body-md relative z-10">
+            <p className="font-body-md text-body-md relative z-10 font-semibold">
               ¡Match Altamente Recomendado!
             </p>
+            <button
+              type="button"
+              className="mt-4 relative z-10 bg-on-primary-container text-primary-container font-label-md text-label-md px-6 py-2.5 rounded-xl hover:opacity-90 transition-all font-bold cursor-pointer"
+            >
+              Conectar Ahora
+            </button>
           </div>
 
           {/* Talento Card */}
-          <div className="md:col-span-4 bg-surface rounded-xl shadow-ambient border border-surface-container p-md flex flex-col items-center text-center relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-24 bg-surface-container-high z-0"></div>
-            <div className="z-10 relative mb-4">
-              <img
-                className="w-20 h-20 rounded-xl object-cover border-4 border-surface shadow-sm"
-                alt="Carlos Mendes Avatar"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ58fN-YcmOPDf-MpGQC5CT0KQPuuPr6LePi1xJbWNUezSv7Ir4A7FvlinZ-jtexVYv4uvqgeUj5aN3qn0ovZVPCFnrCu4wOz6_3pXSlxHX2yiWWOIAChRiW75qRq_GehmJY-GOOHpdRbEtQBITRkP3kIBqzmk3gCL_q1nd6Cx53xEFJ9eT0l_UTLpKGdj9naEMvOO-iN3vLk_yahmz3EGEe_lRc-l3NS8KMPAwyWw8qPylnLmotpg"
-              />
+          <div className="md:col-span-4 bg-surface-container-lowest rounded-2xl shadow-ambient border border-surface-container p-md flex flex-col items-center text-center relative overflow-hidden hover:shadow-ambient-md transition-all">
+            <div className="absolute top-0 left-0 w-full h-20 bg-primary-container/30 z-0 rounded-t-2xl" />
+            <div className="z-10 relative mb-4 mt-4">
+              <div className="w-20 h-20 rounded-2xl bg-primary-container text-on-primary-container border-4 border-surface shadow-xs flex items-center justify-center font-bold text-2xl">
+                CM
+              </div>
+              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-primary rounded-full border-2 border-surface flex items-center justify-center">
+                <span className="material-symbols-outlined text-on-primary text-xs">star</span>
+              </div>
             </div>
-            <h3 className="font-headline-md text-headline-md text-on-background z-10">
+            <h3 className="font-headline-md text-headline-md text-on-background z-10 font-bold">
               Carlos Mendes
             </h3>
             <p className="font-body-md text-body-md text-on-surface-variant mb-4 z-10">
-              Desarrollador Full-Stack
+              Desarrollador Full-Stack Sr.
             </p>
             <div className="flex flex-wrap justify-center gap-2 mb-4 z-10">
-              <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-xl font-label-sm text-label-sm">
+              <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold">
                 React
               </span>
-              <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-xl font-label-sm text-label-sm">
+              <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold">
                 Node.js
               </span>
-              <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-xl font-label-sm text-label-sm">
+              <span className="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold">
                 AWS
               </span>
             </div>
-            <button className="mt-auto w-full border-2 border-outline text-on-surface py-2 rounded-lg font-label-md text-label-md hover:bg-surface-container transition-colors z-10">
-              Ver Perfil
-            </button>
+            <Link
+              href="/talento/dashboard"
+              className="mt-auto w-full border-2 border-primary text-primary py-2.5 rounded-xl font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors z-10 font-bold text-center"
+            >
+              Ver Perfil de Talento
+            </Link>
           </div>
 
-          {/* Problema & Mentor Row */}
-          <div className="md:col-span-6 bg-surface rounded-xl shadow-ambient border border-surface-container p-md flex flex-col md:flex-row gap-md items-start">
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="material-symbols-outlined text-error">
-                  warning
-                </span>
-                <h4 className="font-headline-md text-headline-md text-on-background">
-                  Desafío Actual
-                </h4>
+          {/* Desafío Actual */}
+          <div className="md:col-span-6 bg-surface-container-lowest rounded-2xl shadow-ambient border border-surface-container p-md">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 bg-error-container text-on-error-container rounded-full flex items-center justify-center">
+                <span className="material-symbols-outlined text-sm">warning</span>
               </div>
-              <p className="font-body-md text-body-md text-on-surface-variant mb-4">
-                Migración de infraestructura legada a arquitectura cloud nativa
-                con tiempo de inactividad cero.
-              </p>
-              <div className="flex gap-2">
-                <span className="text-xs bg-error-container text-on-error-container px-2 py-1 rounded-md">
-                  Alta Prioridad
-                </span>
-              </div>
+              <h4 className="font-headline-md text-headline-md text-on-background font-bold">
+                Desafío Actual del Match
+              </h4>
+            </div>
+            <p className="font-body-md text-body-md text-on-surface-variant mb-4">
+              Migración de infraestructura legada a arquitectura cloud nativa con tiempo de inactividad cero. Se requiere experiencia en Kubernetes, Terraform y DevOps avanzado.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <span className="text-xs bg-error-container text-on-error-container px-2.5 py-1 rounded-full font-semibold">
+                Alta Prioridad
+              </span>
+              <span className="text-xs bg-surface-container-high text-on-surface px-2.5 py-1 rounded-full font-semibold">
+                Kubernetes
+              </span>
+              <span className="text-xs bg-surface-container-high text-on-surface px-2.5 py-1 rounded-full font-semibold">
+                Terraform
+              </span>
+              <span className="text-xs bg-surface-container-high text-on-surface px-2.5 py-1 rounded-full font-semibold">
+                DevOps
+              </span>
             </div>
           </div>
 
-          <div className="md:col-span-6 bg-surface-container-low rounded-xl shadow-ambient border border-surface-container p-md flex items-center gap-md relative overflow-hidden">
-            <div className="absolute right-0 top-0 w-32 h-32 bg-primary-container opacity-50 rounded-full blur-2xl -mr-16 -mt-16"></div>
-            <img
-              className="w-16 h-16 rounded-full object-cover shadow-sm z-10"
-              alt="Dra. Elena Rios Avatar"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN_kAbHeidHvSeDV-B8SEOAjSdSBgYTVb5iHIGFzJu3qMeKJJ3KC5njIBfCYXctyVISy0_Kj6iHpt-V0tUOQkDxRnE4v0VDR0My-0Kqv6cY0eIviHV0TW4RF35ZdDmg55GSvgtBTwHm0_hMk-g1JndOTEaCNUv8WeL2ljDFPslIxN4JEPOccq48GRkdcpnJTeAx-qYskPxs51pM6antF70o2yI8O5jj4jFN4iv1ncWWphCg8qQzEeS"
-            />
+          {/* Mentor Sugerido */}
+          <div className="md:col-span-6 bg-surface-container-low rounded-2xl shadow-ambient border border-surface-container p-md flex items-center gap-md relative overflow-hidden hover:shadow-ambient-md transition-all cursor-pointer group">
+            <div className="absolute right-0 top-0 w-32 h-32 bg-primary-container opacity-50 rounded-full blur-2xl -mr-16 -mt-16" />
+            <div className="w-16 h-16 rounded-full bg-tertiary-container text-on-tertiary-container border-2 border-surface shadow-xs z-10 flex items-center justify-center font-bold text-xl shrink-0">
+              ER
+            </div>
             <div className="z-10 flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <span className="material-symbols-outlined text-tertiary text-sm">
+                <span className="material-symbols-outlined text-primary text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>
                   workspace_premium
                 </span>
-                <span className="font-label-sm text-label-sm text-tertiary uppercase tracking-wider">
+                <span className="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">
                   Mentor Sugerido
                 </span>
               </div>
-              <h4 className="font-headline-md text-headline-md text-on-background">
+              <h4 className="font-headline-md text-headline-md text-on-background font-bold">
                 Dra. Elena Rios
               </h4>
               <p className="font-body-md text-body-md text-on-surface-variant text-sm">
-                Especialista en Cloud Architecture
+                Especialista en Cloud Architecture & DevOps · 8 años de experiencia
               </p>
             </div>
-            <button className="z-10 bg-surface-container text-on-surface p-2 rounded-full hover:bg-surface-variant transition-colors">
+            <Link
+              href="/mentores"
+              className="z-10 bg-surface-container text-on-surface p-2 rounded-full hover:bg-primary-container hover:text-on-primary-container transition-colors group-hover:scale-110 duration-200"
+            >
               <span className="material-symbols-outlined">chevron_right</span>
-            </button>
+            </Link>
           </div>
         </div>
+
+        {/* Additional Matches Section */}
+        <section className="mt-xl">
+          <div className="flex justify-between items-center mb-md">
+            <h2 className="font-headline-md text-headline-md font-bold text-on-background">
+              Otras Conexiones Recomendadas
+            </h2>
+            <Link href="/match-talento" className="text-label-sm font-bold text-primary hover:underline">
+              Ver todas
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-md">
+            {[
+              { initials: 'AP', name: 'Ana Pérez', role: 'UX/UI Designer', match: 95, color: 'bg-secondary-container text-on-secondary-container' },
+              { initials: 'JM', name: 'Juan Mora', role: 'Data Analyst', match: 88, color: 'bg-tertiary-container text-on-tertiary-container' },
+              { initials: 'SL', name: 'Sofía López', role: 'Project Manager', match: 82, color: 'bg-primary-container text-on-primary-container' },
+            ].map((t) => (
+              <div
+                key={t.name}
+                className="bg-surface-container-lowest rounded-2xl p-md border border-surface-container shadow-ambient flex items-center gap-md hover:shadow-ambient-md transition-all cursor-pointer group"
+              >
+                <div className={`w-12 h-12 rounded-full ${t.color} flex items-center justify-center font-bold text-sm shrink-0`}>
+                  {t.initials}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="font-label-md text-label-md text-on-background font-bold truncate">{t.name}</p>
+                  <p className="text-label-sm text-on-surface-variant truncate">{t.role}</p>
+                </div>
+                <span className="text-label-sm font-bold text-primary bg-primary-container/50 px-2.5 py-1 rounded-full shrink-0">
+                  {t.match}%
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   );

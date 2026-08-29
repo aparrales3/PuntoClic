@@ -28,22 +28,22 @@ export default function MentoresPage() {
       <main className="max-w-container-max mx-auto p-margin-mobile md:p-lg space-y-xl">
         {/* Mentor 1: Dayana Padilla */}
         <section className="bg-surface-container-lowest rounded-xl shadow-ambient border border-surface-container-high overflow-hidden flex flex-col md:flex-row relative">
-          <div className="md:w-1/3 h-64 md:h-auto relative">
-            <img
-              className="w-full h-full object-cover"
-              alt="Dayana Padilla"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc4eYiTl9UpKhvr0FrvoQsTjuFN_mNupFJsXuIOzeQcWzTBu4SeBHrhXcz9fGRU6vHXbQUCWuLDn3ycjia6EE6mFq_OKczSuHkUE6sBMH7dqu_okaA6hE2iE5-0rE-KfXq1ETe3e8SSMZ56yTNlelizdZ9TdDhqCSaXDV4CCBdf-tdDoT87iG20mQdrbBfrnRZR20F8PZ-5sAB7tzArWeaBOAhvK2yV9E7JofQN-vACF51968UKwwD"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:hidden"></div>
-            <div className="absolute bottom-4 left-4 md:hidden">
-              <h2 className="font-headline-lg-mobile text-headline-lg-mobile text-white drop-shadow-md">
+          <div className="md:w-1/3 h-64 md:h-auto relative bg-gradient-to-br from-secondary-container to-secondary-fixed flex items-center justify-center">
+            <div className="text-center">
+              <div className="w-28 h-28 rounded-full bg-surface/20 border-4 border-surface/30 flex items-center justify-center font-bold text-5xl text-on-secondary-container mx-auto mb-2">
+                DP
+              </div>
+              <p className="text-on-secondary-container font-label-md text-label-md font-bold md:hidden">
                 Dayana Padilla
-              </h2>
-              <p className="font-label-sm text-label-sm text-primary-fixed">
+              </p>
+            </div>
+            <div className="absolute bottom-4 left-4 md:hidden">
+              <p className="font-label-sm text-label-sm text-on-secondary-container/70">
                 Licenciada en Marketing
               </p>
             </div>
           </div>
+
           <div className="p-md md:p-lg md:w-2/3 flex flex-col justify-between">
             <div>
               <div className="hidden md:block mb-sm">
