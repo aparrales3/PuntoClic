@@ -4,6 +4,9 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { Suspense } from 'react';
 import Step1DatosPersonales from './steps/Step1DatosPersonales';
 import Step2FechaNacimiento from './steps/Step2FechaNacimiento';
+import Step3Cedula from './steps/Step3Cedula';
+
+import Step4Genero from './steps/Step4Genero';
 
 function TalentRegistrationContent() {
   const searchParams = useSearchParams();
@@ -27,6 +30,10 @@ function TalentRegistrationContent() {
       return <Step1DatosPersonales onNext={handleNext} onBack={handleBack} />;
     case 2:
       return <Step2FechaNacimiento onNext={handleNext} onBack={handleBack} />;
+    case 3:
+      return <Step3Cedula onNext={handleNext} onBack={handleBack} />;
+    case 4:
+      return <Step4Genero onNext={handleNext} onBack={handleBack} />;
     // TODO: Add other steps here
     default:
       return <Step1DatosPersonales onNext={handleNext} onBack={handleBack} />;
@@ -35,7 +42,7 @@ function TalentRegistrationContent() {
 
 export default function TalentRegistrationPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-background" />}>
+    <Suspense fallback={<div className="min-h-screen bg-background w-full max-w-md" />}>
       <TalentRegistrationContent />
     </Suspense>
   );

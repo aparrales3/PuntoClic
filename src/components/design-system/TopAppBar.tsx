@@ -10,6 +10,8 @@ import Link from 'next/link';
 interface TopAppBarProps {
   /** Show back button */
   showBack?: boolean;
+  /** Custom onBackClick handler */
+  onBackClick?: () => void;
   /** Custom right element */
   right?: React.ReactNode;
   /** User avatar URL (for logged-in state) */
@@ -21,6 +23,7 @@ interface TopAppBarProps {
 
 export function TopAppBar({
   showBack = false,
+  onBackClick,
   right,
   avatarUrl,
   showMenu = false,
@@ -49,13 +52,23 @@ export function TopAppBar({
           <span className="material-symbols-outlined">grid_view</span>
         </button>
       ) : showBack ? (
-        <Link
-          href="/"
-          className="flex items-center justify-center p-2 text-[--color-primary] hover:opacity-80 transition-opacity active:scale-95 duration-100"
-          aria-label="Volver"
-        >
-          <span className="material-symbols-outlined">arrow_back</span>
-        </Link>
+        onBackClick ? (
+          <button
+            onClick={onBackClick}
+            className="flex items-center justify-center p-2 text-[--color-primary] hover:opacity-80 transition-opacity active:scale-95 duration-100"
+            aria-label="Volver"
+          >
+            <span className="material-symbols-outlined">arrow_back</span>
+          </button>
+        ) : (
+          <Link
+            href="/"
+            className="flex items-center justify-center p-2 text-[--color-primary] hover:opacity-80 transition-opacity active:scale-95 duration-100"
+            aria-label="Volver"
+          >
+            <span className="material-symbols-outlined">arrow_back</span>
+          </Link>
+        )
       ) : (
         <div className="w-10" aria-hidden="true" />
       )}

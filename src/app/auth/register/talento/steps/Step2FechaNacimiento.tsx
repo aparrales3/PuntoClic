@@ -57,10 +57,10 @@ export default function Step2FechaNacimiento({ onNext, onBack }: { onNext: () =>
       <div className="md:bg-surface md:shadow-[0_4px_20px_rgba(0,0,0,0.03)] md:border md:border-surface-variant md:rounded-[2rem] md:p-10 flex-1 flex flex-col">
         <div className="text-center mb-10">
           <h1 className="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-surface mb-3">Fecha de nacimiento</h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-md mx-auto">Para unirte a la colmena, necesitamos confirmar tu edad. Esta información se mantendrá privada.</p>
+          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-[448px] mx-auto">Para unirte a la colmena, necesitamos confirmar tu edad. Esta información se mantendrá privada.</p>
         </div>
         
-        <div className="flex gap-3 md:gap-5 mt-auto mb-auto justify-center max-w-md mx-auto w-full">
+        <div className="flex gap-3 md:gap-5 mt-auto mb-auto justify-center max-w-[448px] mx-auto w-full">
           {/* Day */}
           <div className="flex-1 flex flex-col gap-2">
             <label className="font-label-md text-label-md text-on-surface-variant text-center" htmlFor="day">Día</label>

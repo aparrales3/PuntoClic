@@ -1,128 +1,105 @@
-// =============================================================================
-// PUNTOCLICK — User Type Selection Page
-// Reproduced from seleccionar_tipo_de_usuario/code.html
-// =============================================================================
-
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { TopAppBar } from '@/components/design-system';
 
 export const metadata: Metadata = {
-  title: 'Elige tu rol',
-  description: 'Únete al ecosistema PuntoClic como Talento, Empresa o Institución.',
+  title: 'Elige tu camino - PUNTOCLICK',
+  description: 'Elige cómo quieres unirte al ecosistema PuntoClic para comenzar.',
 };
-
-const roles = [
-  {
-    id: 'talento',
-    title: 'TALENTO',
-    description:
-      'Crea tu portafolio vivo, muestra tus habilidades y conecta con empresas e instituciones que buscan tu expertise.',
-    icon: 'person',
-    href: '/auth/register/talento',
-    cta: 'Unirme como Talento',
-    featured: false,
-  },
-  {
-    id: 'empresa',
-    title: 'EMPRESA',
-    description:
-      'Describe tus "dolores" y necesidades — sin saber qué profesional necesitas. El sistema encuentra el talento correcto para ti.',
-    icon: 'business',
-    href: '/auth/register/empresa',
-    cta: 'Unirme como Empresa',
-    featured: true, // elevated card in the middle
-  },
-  {
-    id: 'institucion',
-    title: 'INSTITUCIÓN',
-    description:
-      'Conecta tu institución con el ecosistema, valida habilidades y abre puertas entre el talento y la industria.',
-    icon: 'account_balance',
-    href: '/auth/register/institucion',
-    cta: 'Unirme como Institución',
-    featured: false,
-  },
-];
 
 export default function SelectUserTypePage() {
   return (
-    <div className="bg-[--color-background] min-h-screen flex flex-col">
-      <TopAppBar showBack />
+    <div className="bg-background text-on-background min-h-screen flex flex-col font-body-md">
+      {/* TopAppBar */}
+      <header className="bg-background flex justify-between items-center w-full px-margin-mobile py-sm top-0 z-50">
+        <Link
+          href="/"
+          className="text-primary hover:opacity-80 transition-opacity active:scale-95 duration-100 flex items-center justify-center p-2 rounded-full"
+          aria-label="Volver a inicio"
+        >
+          <span className="material-symbols-outlined text-2xl">arrow_back</span>
+        </Link>
+        <h1 className="font-headline-md text-headline-md-mobile text-primary tracking-wider md:text-headline-md uppercase text-center flex-1">
+          PUNTOCLICK
+        </h1>
+        <div className="w-10" aria-hidden="true" />
+      </header>
 
-      <main className="flex-grow flex flex-col items-center justify-center px-[--spacing-margin-mobile] py-[--spacing-xl] pt-24">
-        {/* Header */}
-        <div className="text-center mb-[--spacing-xl] w-full max-w-2xl animate-fade-in">
-          <h1 className="text-headline-xl-mobile md:text-headline-xl text-[--color-primary] mb-[--spacing-sm]">
-            Elige tu camino
-          </h1>
-          <p className="text-body-lg text-[--color-on-surface-variant]">
+      {/* Main Content Canvas */}
+      <main className="flex-1 flex flex-col items-center justify-center px-margin-mobile py-xl md:px-lg max-w-container-max mx-auto w-full">
+        <div className="text-center mb-xl w-full max-w-2xl">
+          <h2 className="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-primary mb-sm">
+            Selecciona tu Camino
+          </h2>
+          <p className="font-body-lg text-body-lg text-on-surface-variant">
             Elige cómo quieres unirte al ecosistema PuntoClic para comenzar.
           </p>
         </div>
 
-        {/* Role cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-[--spacing-md] md:gap-[--spacing-lg] w-full max-w-5xl animate-fade-in">
-          {roles.map((role) => (
-            <Link
-              key={role.id}
-              href={role.href}
-              className={[
-                'group relative flex flex-col items-center p-[--spacing-lg]',
-                'bg-[--color-surface-container-low] rounded-[--radius-xl]',
-                'border border-[--color-surface-variant]',
-                'shadow-ambient',
-                'hover:shadow-[0_8px_30px_rgba(120,90,0,0.1)] hover:border-[--color-primary]',
-                'transition-all duration-300',
-                'text-center w-full h-full',
-                role.featured ? 'md:-translate-y-4' : '',
-              ].join(' ')}
-            >
-              {/* Icon */}
-              <div
-                className={[
-                  'w-20 h-20 mb-[--spacing-md] rounded-full flex items-center justify-center',
-                  'bg-[--color-secondary-container] text-[--color-on-secondary-container]',
-                  'group-hover:bg-[--color-primary-container] group-hover:text-[--color-on-primary-container]',
-                  'transition-colors duration-300',
-                ].join(' ')}
-              >
-                <span className="material-symbols-outlined text-4xl">{role.icon}</span>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-md md:gap-lg w-full max-w-5xl">
+          {/* TALENTO Card */}
+          <Link
+            href="/auth/register/talento"
+            className="group relative flex flex-col items-center p-lg bg-surface-container-low rounded-xl border border-surface-variant shadow-[0_4px_20px_rgba(32,27,18,0.05)] hover:shadow-[0_8px_30px_rgba(120,90,0,0.1)] hover:border-primary transition-all duration-300 text-left w-full h-full"
+          >
+            <div className="w-20 h-20 mb-md rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors duration-300">
+              <span className="material-symbols-outlined text-4xl">person</span>
+            </div>
+            <h3 className="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary mb-sm w-full text-center">
+              TALENTO
+            </h3>
+            <p className="font-body-md text-body-md text-on-surface-variant text-center flex-1">
+              Crea tu perfil, demuestra tus habilidades y conecta con empresas e instituciones líderes que buscan tu talento.
+            </p>
+            <div className="mt-md px-md py-sm bg-surface rounded-full border border-outline-variant text-on-surface font-label-md text-label-md group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-colors duration-300">
+              Unirme como Talento
+            </div>
+          </Link>
 
-              {/* Title */}
-              <h2 className="text-headline-lg-mobile md:text-headline-lg text-[--color-primary] mb-[--spacing-sm] w-full">
-                {role.title}
-              </h2>
+          {/* EMPRESA Card (Featured / Elevated) */}
+          <Link
+            href="/auth/register/empresa"
+            className="group relative flex flex-col items-center p-lg bg-surface-container-low rounded-xl border border-surface-variant shadow-[0_4px_20px_rgba(32,27,18,0.05)] hover:shadow-[0_8px_30px_rgba(120,90,0,0.1)] hover:border-primary transition-all duration-300 text-left w-full h-full md:-translate-y-4"
+          >
+            <div className="w-20 h-20 mb-md rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors duration-300">
+              <span className="material-symbols-outlined text-4xl">business</span>
+            </div>
+            <h3 className="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary mb-sm w-full text-center">
+              EMPRESA
+            </h3>
+            <p className="font-body-md text-body-md text-on-surface-variant text-center flex-1">
+              Descubre profesionales verificados, gestiona tus procesos de atracción y haz crecer tu organización con talento de alto nivel.
+            </p>
+            <div className="mt-md px-md py-sm bg-surface rounded-full border border-outline-variant text-on-surface font-label-md text-label-md group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-colors duration-300">
+              Unirme como Empresa
+            </div>
+          </Link>
 
-              {/* Description */}
-              <p className="text-body-md text-[--color-on-surface-variant] flex-1">
-                {role.description}
-              </p>
-
-              {/* CTA pill */}
-              <div
-                className={[
-                  'mt-[--spacing-md] px-[--spacing-md] py-[--spacing-sm]',
-                  'bg-[--color-surface] rounded-[--radius-full]',
-                  'border border-[--color-outline-variant]',
-                  'text-[--color-on-surface] text-label-md',
-                  'group-hover:bg-[--color-primary] group-hover:text-[--color-on-primary] group-hover:border-[--color-primary]',
-                  'transition-colors duration-300',
-                ].join(' ')}
-              >
-                {role.cta}
-              </div>
-            </Link>
-          ))}
+          {/* INSTITUCIÓN Card */}
+          <Link
+            href="/auth/register/institucion"
+            className="group relative flex flex-col items-center p-lg bg-surface-container-low rounded-xl border border-surface-variant shadow-[0_4px_20px_rgba(32,27,18,0.05)] hover:shadow-[0_8px_30px_rgba(120,90,0,0.1)] hover:border-primary transition-all duration-300 text-left w-full h-full"
+          >
+            <div className="w-20 h-20 mb-md rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors duration-300">
+              <span className="material-symbols-outlined text-4xl">account_balance</span>
+            </div>
+            <h3 className="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary mb-sm w-full text-center">
+              INSTITUCIÓN
+            </h3>
+            <p className="font-body-md text-body-md text-on-surface-variant text-center flex-1">
+              Alíate con el ecosistema para orientar, validar habilidades e impulsar conexiones entre el talento y la industria.
+            </p>
+            <div className="mt-md px-md py-sm bg-surface rounded-full border border-outline-variant text-on-surface font-label-md text-label-md group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-colors duration-300">
+              Unirme como Institución
+            </div>
+          </Link>
         </div>
 
         {/* Login link */}
-        <p className="mt-[--spacing-xl] text-body-md text-[--color-on-surface-variant] animate-fade-in">
-          ¿Ya tienes cuenta?{' '}
+        <p className="mt-xl text-body-md text-on-surface-variant text-center">
+          ¿Ya tienes una cuenta?{' '}
           <Link
             href="/auth/login"
-            className="text-label-md text-[--color-primary] hover:underline"
+            className="font-label-md text-label-md text-primary hover:text-primary-fixed-dim transition-colors ml-1"
           >
             Iniciar sesión
           </Link>
@@ -131,3 +108,4 @@ export default function SelectUserTypePage() {
     </div>
   );
 }
+

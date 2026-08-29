@@ -7,8 +7,8 @@ export default function Step1DatosPersonales({ onNext, onBack }: { onNext: () =>
   const { talentData, setTalentData } = useRegistrationStore();
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start pt-xl pb-xl px-gutter-mobile md:px-md bg-background font-body-md text-on-background">
-      <header className="w-full max-w-md mx-auto mb-xl flex justify-between items-center">
+    <div className="min-h-screen w-full flex flex-col items-center justify-start pt-xl pb-xl px-gutter-mobile md:px-md bg-background font-body-md text-on-background">
+      <header className="w-full max-w-[448px] mx-auto mb-xl flex justify-between items-center">
         <button
           onClick={onBack}
           className="text-primary p-2 hover:bg-surface-container-low rounded-full transition-colors active:scale-95 duration-150"
@@ -20,7 +20,7 @@ export default function Step1DatosPersonales({ onNext, onBack }: { onNext: () =>
         <div className="w-[40px]"></div> {/* Spacer to balance flex */}
       </header>
       
-      <main className="w-full max-w-md mx-auto">
+      <main className="w-full max-w-[448px] mx-auto">
         <div className="mb-lg">
           <div className="flex justify-between items-center mb-xs">
             <span className="font-label-md text-label-md text-on-surface-variant">Progreso del registro</span>

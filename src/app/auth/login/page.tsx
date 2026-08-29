@@ -1,130 +1,123 @@
-// =============================================================================
-// PUNTOCLICK — Login Page
-// Faithfully reproduced from login_puntoclick_1/code.html
-// =============================================================================
-
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { TopAppBar } from '@/components/design-system';
 
 export const metadata: Metadata = {
-  title: 'Iniciar sesión',
-  description: 'Accede a tu cuenta de PUNTOCLICK y conecta con oportunidades.',
+  title: 'Iniciar sesión - PUNTOCLICK',
+  description: 'Conéctate a tu cuenta de PuntoClic para continuar.',
 };
 
 export default function LoginPage() {
   return (
-    <div className="bg-[--color-background] min-h-screen flex flex-col text-[--color-on-background]">
-      <TopAppBar showBack />
+    <div className="bg-background min-h-screen flex flex-col font-body-md text-on-background">
+      {/* TopAppBar (Transactional - Minimal Header) */}
+      <header className="flex justify-between items-center w-full px-margin-mobile py-sm bg-background">
+        <Link
+          href="/"
+          className="flex items-center justify-center p-2 text-primary hover:opacity-80 transition-opacity active:scale-95 duration-100"
+          aria-label="Volver a inicio"
+        >
+          <span className="material-symbols-outlined">arrow_back</span>
+        </Link>
+        <div className="font-headline-md text-headline-md-mobile md:text-headline-md text-primary uppercase tracking-wider">
+          PUNTOCLICK
+        </div>
+        <div className="w-10" aria-hidden="true" />
+      </header>
 
-      <main className="flex-grow flex items-center justify-center p-[--spacing-margin-mobile] pt-24">
-        <div className="w-full max-w-md bg-[--color-surface-container-low] rounded-[--radius-xl] p-[--spacing-md] md:p-[--spacing-lg] shadow-ambient border border-[--color-surface-container-highest]">
-
-          {/* Header */}
-          <div className="text-center mb-[--spacing-xl]">
-            <h1 className="text-headline-lg-mobile md:text-headline-lg text-[--color-on-surface] mb-[--spacing-sm]">
+      <main className="flex-grow flex items-center justify-center p-margin-mobile">
+        <div className="w-full max-w-[448px] bg-surface-container-low rounded-xl p-md md:p-lg shadow-[0_4px_20px_rgba(32,27,18,0.05)] border border-surface-container-highest">
+          <div className="text-center mb-xl">
+            <h1 className="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-sm">
               Bienvenido de vuelta
             </h1>
-            <p className="text-body-md text-[--color-on-surface-variant]">
+            <p className="font-body-md text-body-md text-on-surface-variant">
               Conéctate para continuar.
             </p>
           </div>
 
-          {/* Login Form */}
-          <form action="/api/auth/login" method="POST" className="space-y-[--spacing-md]">
-            {/* Email */}
-            <div className="space-y-[--spacing-xs]">
+          <form action="/api/auth/login" method="POST" className="space-y-md">
+            <div className="space-y-xs">
               <label
-                htmlFor="login-email"
-                className="block text-label-md text-[--color-on-surface]"
+                className="block font-label-md text-label-md text-on-surface"
+                htmlFor="email"
               >
                 Correo electrónico
               </label>
               <input
-                id="login-email"
+                className="w-full bg-surface-container-lowest border border-tertiary-fixed-dim rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+                id="email"
                 name="email"
-                type="email"
-                autoComplete="email"
-                required
                 placeholder="tu@email.com"
-                className="w-full bg-[--color-surface-container-lowest] border border-[--color-tertiary-fixed-dim] rounded-[--radius-lg] px-4 py-3 text-body-md text-[--color-on-surface] placeholder:text-[--color-on-surface-variant] focus:outline-none focus:ring-2 focus:ring-[--color-primary] focus:border-[--color-primary] transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+                type="email"
+                required
               />
             </div>
 
-            {/* Password */}
-            <div className="space-y-[--spacing-xs]">
+            <div className="space-y-xs">
               <label
-                htmlFor="login-password"
-                className="block text-label-md text-[--color-on-surface]"
+                className="block font-label-md text-label-md text-on-surface"
+                htmlFor="password"
               >
                 Contraseña
               </label>
               <input
-                id="login-password"
+                className="w-full bg-surface-container-lowest border border-tertiary-fixed-dim rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+                id="password"
                 name="password"
-                type="password"
-                autoComplete="current-password"
-                required
                 placeholder="••••••••"
-                className="w-full bg-[--color-surface-container-lowest] border border-[--color-tertiary-fixed-dim] rounded-[--radius-lg] px-4 py-3 text-body-md text-[--color-on-surface] placeholder:text-[--color-on-surface-variant] focus:outline-none focus:ring-2 focus:ring-[--color-primary] focus:border-[--color-primary] transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)]"
+                type="password"
+                required
               />
             </div>
 
-            {/* Forgot password */}
             <div className="flex justify-end">
               <Link
-                href="/auth/forgot-password"
-                className="text-label-md text-[--color-primary] hover:text-[--color-primary-fixed-dim] transition-colors"
+                className="font-label-md text-label-md text-primary hover:text-primary-fixed-dim transition-colors"
+                href="/auth/recuperar-contrasena"
               >
                 ¿Olvidé mi contraseña?
               </Link>
             </div>
 
-            {/* Submit */}
             <button
+              className="w-full bg-primary-container text-on-primary-container rounded-lg py-3 font-label-md text-label-md shadow-[0_4px_12px_rgba(244,190,55,0.2)] hover:bg-inverse-primary hover:shadow-[0_6px_16px_rgba(244,190,55,0.3)] transition-all active:scale-[0.98]"
               type="submit"
-              className="w-full bg-[--color-primary-container] text-[--color-on-primary-container] rounded-[--radius-lg] py-3 text-label-md font-semibold shadow-[0_4px_12px_rgba(244,190,55,0.2)] hover:bg-[--color-primary-fixed-dim] hover:shadow-[0_6px_16px_rgba(244,190,55,0.3)] transition-all active:scale-[0.98]"
             >
               Iniciar sesión
             </button>
           </form>
 
-          {/* Divider */}
-          <div className="mt-[--spacing-lg]">
-            <div className="relative flex items-center mb-[--spacing-md]">
-              <div className="flex-grow border-t border-[--color-tertiary-fixed-dim]" />
-              <span className="flex-shrink-0 mx-4 text-[--color-on-surface-variant] text-label-sm">
+          <div className="mt-lg">
+            <div className="relative flex items-center mb-md">
+              <div className="flex-grow border-t border-tertiary-fixed-dim"></div>
+              <span className="flex-shrink-0 mx-4 text-on-surface-variant font-label-sm text-label-sm">
                 o continuar con
               </span>
-              <div className="flex-grow border-t border-[--color-tertiary-fixed-dim]" />
+              <div className="flex-grow border-t border-tertiary-fixed-dim"></div>
             </div>
 
-            {/* OAuth buttons */}
-            <div className="flex flex-col space-y-[--spacing-sm]">
+            <div className="flex flex-col space-y-sm">
               <button
                 type="button"
-                className="w-full flex items-center justify-center gap-2 bg-[--color-surface-container-lowest] border border-[--color-outline-variant] rounded-[--radius-lg] py-2.5 px-4 text-label-md text-[--color-on-surface] hover:bg-[--color-surface-container-highest] transition-colors shadow-sm"
+                className="w-full flex items-center justify-center bg-surface-container-lowest border border-outline-variant rounded-lg py-2.5 px-4 font-label-md text-label-md text-on-surface hover:bg-surface-container-highest transition-colors shadow-sm"
               >
-                <span className="material-symbols-outlined">login</span>
-                Google
+                <span className="material-symbols-outlined mr-2">login</span> Google
               </button>
               <button
                 type="button"
-                className="w-full flex items-center justify-center gap-2 bg-[--color-surface-container-lowest] border border-[--color-outline-variant] rounded-[--radius-lg] py-2.5 px-4 text-label-md text-[--color-on-surface] hover:bg-[--color-surface-container-highest] transition-colors shadow-sm"
+                className="w-full flex items-center justify-center bg-surface-container-lowest border border-outline-variant rounded-lg py-2.5 px-4 font-label-md text-label-md text-on-surface hover:bg-surface-container-highest transition-colors shadow-sm"
               >
-                <span className="material-symbols-outlined">work</span>
-                LinkedIn
+                <span className="material-symbols-outlined mr-2">work</span> LinkedIn
               </button>
             </div>
           </div>
 
-          {/* Register link */}
-          <div className="mt-[--spacing-xl] text-center">
-            <p className="text-body-md text-[--color-on-surface-variant]">
+          <div className="mt-xl text-center">
+            <p className="font-body-md text-body-md text-on-surface-variant">
               ¿No tienes una cuenta?{' '}
               <Link
+                className="font-label-md text-label-md text-primary hover:text-primary-fixed-dim transition-colors ml-1"
                 href="/auth/register"
-                className="text-label-md text-[--color-primary] hover:text-[--color-primary-fixed-dim] transition-colors ml-1"
               >
                 Crear cuenta
               </Link>
@@ -135,3 +128,4 @@ export default function LoginPage() {
     </div>
   );
 }
+

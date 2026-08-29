@@ -193,14 +193,14 @@ export default function RegisterEmpresaPage() {
           {/* Actions */}
           <div className="mt-[--spacing-xl] pt-[--spacing-md] border-t border-[--color-surface-variant] flex justify-between gap-4">
             <Button 
-              variant="outline" 
+              variant="secondary" 
               className="w-full" 
               onClick={handleBack}
             >
               {currentStep === 0 ? 'Cancelar' : 'Atrás'}
             </Button>
             <Button 
-              variant="filled" 
+              variant="primary" 
               className="w-full" 
               onClick={handleNext}
             >

@@ -1,128 +1,113 @@
-// =============================================================================
-// PUNTOCLICK — Talent Dashboard
-// Reproduced from dashboard_talento_puntoclick_conectado/code.html
-// =============================================================================
-
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { StatCard, Card, Chip, MatchBadge } from '@/components/design-system';
 
 export const metadata: Metadata = {
-  title: 'Dashboard — Talento',
-  description: 'Tu panel de control de talento en PUNTOCLICK.',
+  title: 'Dashboard — Talento PUNTOCLICK',
+  description: 'Tu próximo Match puede estar aquí.',
 };
-
-// Mock data — will be replaced by Server Actions + Neon DB queries
-const mockStats = {
-  completionPct: 85,
-  matches: 3,
-  views: 12,
-  viewsTrend: '+2',
-  opportunities: 5,
-};
-
-const mockMatches = [
-  {
-    id: '1',
-    companyName: 'TechCorp Innova',
-    sector: 'Software Development',
-    sectorIcon: 'code',
-    score: 92,
-    skills: ['React', 'UX/UI'],
-    workMode: 'Remoto',
-  },
-  {
-    id: '2',
-    companyName: 'Studio Creative',
-    sector: 'Product Design',
-    sectorIcon: 'palette',
-    score: 88,
-    skills: ['Figma', 'Design Systems'],
-    workMode: 'Híbrido',
-  },
-];
 
 export default function TalentoDashboardPage() {
   return (
-    <main className="max-w-[--spacing-container-max] mx-auto px-[--spacing-margin-mobile] md:px-[--spacing-xl] mt-[--spacing-md]">
-
-      {/* Greeting */}
-      <section className="mb-[--spacing-lg] animate-fade-in-up">
-        <h1 className="text-headline-xl-mobile md:text-headline-xl text-[--color-on-background] mb-[--spacing-xs]">
+    <main className="max-w-container-max mx-auto px-margin-mobile md:px-xl mt-md">
+      {/* Header Section */}
+      <section className="mb-lg animate-fade-in-up">
+        <h2 className="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl text-on-background mb-xs">
           Hola, Alejandro
-        </h1>
-        <p className="text-body-md text-[--color-on-surface-variant]">
+        </h2>
+        <p className="font-body-md text-body-md text-on-surface-variant">
           Tu próximo Match puede estar aquí.
         </p>
       </section>
 
       {/* Stats Bento Grid */}
-      <section className="grid grid-cols-2 md:grid-cols-4 gap-[--spacing-sm] md:gap-[--spacing-md] mb-[--spacing-xl]">
-
-        {/* Profile completion — spans 2 cols */}
+      <section className="grid grid-cols-2 md:grid-cols-4 gap-sm md:gap-md mb-xl">
+        {/* Card 1: Perfil Completado */}
         <Link
+          className="col-span-2 bg-surface-container-lowest rounded-xl p-md shadow-ambient border border-surface-variant/40 flex flex-col justify-between hover:shadow-ambient-md transition-shadow relative overflow-hidden group"
           href="/talento/perfil"
-          className="col-span-2 bg-[--color-surface-container-lowest] rounded-[--radius-xl] p-[--spacing-md] shadow-ambient border border-[--color-surface-variant]/40 flex flex-col justify-between hover:shadow-ambient-md transition-shadow relative overflow-hidden group"
         >
-          <div className="flex justify-between items-start mb-[--spacing-sm] relative z-10">
-            <h2 className="text-label-md text-[--color-on-surface-variant] uppercase tracking-wider">Perfil</h2>
-            <span className="material-symbols-outlined text-[--color-secondary]" style={{ fontVariationSettings: "'FILL' 1" }}>
+          <div className="flex justify-between items-start mb-sm relative z-10">
+            <h3 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+              Perfil
+            </h3>
+            <span className="material-symbols-outlined text-secondary font-light">
               person_check
             </span>
           </div>
           <div className="relative z-10">
             <div className="flex items-end gap-2 mb-2">
-              <span className="text-headline-lg-mobile text-[--color-on-background]">
-                {mockStats.completionPct}%
+              <span className="font-headline-lg-mobile text-headline-lg-mobile text-on-background">
+                85%
               </span>
-              <span className="text-label-sm text-[--color-secondary] mb-1">Completado</span>
+              <span className="font-label-sm text-label-sm text-secondary mb-1">
+                Completado
+              </span>
             </div>
-            <div className="h-2 w-full bg-[--color-surface-container-high] rounded-full overflow-hidden">
-              <div
-                className="h-full bg-[--color-secondary] rounded-full transition-all duration-1000 ease-out"
-                style={{ width: `${mockStats.completionPct}%` }}
-              />
+            <div className="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+              <div className="h-full bg-secondary rounded-full w-[85%] transition-all duration-1000 ease-out"></div>
             </div>
           </div>
-          {/* Decorative glow */}
-          <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[--color-secondary-container]/20 rounded-full blur-xl group-hover:bg-[--color-secondary-container]/30 transition-colors" />
+          <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-secondary-container/20 rounded-full blur-xl group-hover:bg-secondary-container/30 transition-colors"></div>
         </Link>
 
-        {/* Matches */}
-        <StatCard
-          label="Matches"
-          value={mockStats.matches}
-          icon="handshake"
-          className="col-span-1"
-        />
-
-        {/* Views */}
-        <Card className="col-span-1 flex flex-col justify-between">
-          <div className="flex justify-between items-start mb-[--spacing-sm]">
-            <h2 className="text-label-md text-[--color-on-surface-variant] uppercase tracking-wider">Vistas</h2>
-            <span className="material-symbols-outlined text-[--color-tertiary]">visibility</span>
-          </div>
-          <div className="mt-auto flex items-baseline gap-2">
-            <span className="text-headline-lg-mobile text-[--color-on-background]">{mockStats.views}</span>
-            <span className="text-label-sm text-[--color-secondary] bg-[--color-secondary-container]/50 px-2 py-0.5 rounded-full flex items-center">
-              <span className="material-symbols-outlined" style={{ fontSize: '12px' }}>trending_up</span>
-              {mockStats.viewsTrend}
+        {/* Card 2: Matches */}
+        <div className="col-span-1 bg-surface-container-lowest rounded-xl p-md shadow-ambient border border-surface-variant/40 flex flex-col justify-between hover:shadow-ambient-md transition-shadow">
+          <div className="flex justify-between items-start mb-sm">
+            <h3 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+              Matches
+            </h3>
+            <span className="material-symbols-outlined text-primary font-light">
+              handshake
             </span>
           </div>
-        </Card>
+          <div className="mt-auto">
+            <span className="font-headline-lg-mobile text-headline-lg-mobile text-on-background">
+              3
+            </span>
+          </div>
+        </div>
 
-        {/* Opportunities highlight — full width */}
+        {/* Card 3: Vistas */}
+        <div className="col-span-1 bg-surface-container-lowest rounded-xl p-md shadow-ambient border border-surface-variant/40 flex flex-col justify-between hover:shadow-ambient-md transition-shadow">
+          <div className="flex justify-between items-start mb-sm">
+            <h3 className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+              Vistas
+            </h3>
+            <span className="material-symbols-outlined text-tertiary font-light">
+              visibility
+            </span>
+          </div>
+          <div className="mt-auto flex items-baseline gap-2">
+            <span className="font-headline-lg-mobile text-headline-lg-mobile text-on-background">
+              12
+            </span>
+            <span className="font-label-sm text-label-sm text-secondary bg-secondary-container/50 px-2 py-0.5 rounded-full flex items-center">
+              <span className="material-symbols-outlined text-[12px] mr-0.5">
+                trending_up
+              </span>
+              +2
+            </span>
+          </div>
+        </div>
+
+        {/* Card 4: Oportunidades (Highlighted) */}
         <Link
+          className="col-span-2 md:col-span-4 bg-primary-container text-on-primary-container rounded-xl p-md shadow-ambient-md border border-primary-fixed-dim/30 flex justify-between items-center hover:scale-[1.01] transition-transform cursor-pointer relative overflow-hidden group"
           href="/talento/oportunidades"
-          className="col-span-2 md:col-span-4 bg-[--color-primary-container] text-[--color-on-primary-container] rounded-[--radius-xl] p-[--spacing-md] shadow-ambient-md border border-[--color-primary-fixed-dim]/30 flex justify-between items-center hover:scale-[1.01] transition-transform cursor-pointer relative overflow-hidden group"
         >
-          <div className="relative z-10 flex items-center gap-[--spacing-md]">
-            <div className="w-12 h-12 bg-[--color-on-primary-container]/10 rounded-full flex items-center justify-center">
-              <span className="material-symbols-outlined">work</span>
+          <div className="relative z-10 flex items-center gap-md">
+            <div className="w-12 h-12 bg-on-primary-container/10 rounded-full flex items-center justify-center">
+              <span className="material-symbols-outlined text-on-primary-container">
+                work
+              </span>
             </div>
             <div>
-              <h2 className="text-label-md opacity-80 uppercase tracking-wider mb-1">Oportunidades</h2>
-              <p className="text-headline-md leading-none">{mockStats.opportunities} Nuevas</p>
+              <h3 className="font-label-md text-label-md opacity-80 uppercase tracking-wider mb-1">
+                Oportunidades
+              </h3>
+              <p className="font-headline-md text-headline-md leading-none">
+                5 Nuevas
+              </p>
             </div>
           </div>
           <div className="relative z-10">
@@ -130,77 +115,133 @@ export default function TalentoDashboardPage() {
               arrow_forward
             </span>
           </div>
-          {/* Shimmer on hover */}
-          <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:translate-x-full transition-transform duration-700" />
+          <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
         </Link>
       </section>
 
-      {/* Recommended Matches */}
+      {/* Matches Recomendados Section */}
       <section>
-        <div className="flex justify-between items-end mb-[--spacing-md]">
-          <h2 className="text-headline-md text-[--color-on-background]">Matches Recomendados</h2>
+        <div className="flex justify-between items-end mb-md">
+          <h2 className="font-headline-md text-headline-md text-on-background">
+            Matches Recomendados
+          </h2>
           <Link
-            href="/talento/matches"
-            className="text-label-md text-[--color-primary] hover:underline"
+            className="font-label-md text-label-md text-primary hover:underline"
+            href="/match-center"
           >
             Ver todos
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-[--spacing-sm] md:gap-[--spacing-lg]">
-          {mockMatches.map((match) => (
-            <Link
-              key={match.id}
-              href={`/talento/matches/${match.id}`}
-              className="bg-[--color-surface-container-lowest] rounded-[--radius-xl] p-[--spacing-md] shadow-ambient border border-[--color-surface-variant]/40 flex flex-col gap-[--spacing-md] hover:shadow-ambient-md transition-shadow"
-            >
-              {/* Company info */}
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-[--radius-xl] bg-[--color-surface-container-high] overflow-hidden shrink-0 border border-[--color-surface-variant] flex items-center justify-center">
-                  <span
-                    className="material-symbols-outlined text-4xl text-[--color-tertiary]"
-                    style={{ fontVariationSettings: "'FILL' 1" }}
-                  >
-                    {match.sectorIcon}
-                  </span>
-                </div>
-                <div className="flex-grow">
-                  <h3 className="text-headline-md text-[--color-on-background] font-semibold" style={{ fontSize: '18px' }}>
-                    {match.companyName}
-                  </h3>
-                  <p className="text-body-md text-[--color-on-surface-variant] flex items-center gap-1 mt-0.5" style={{ fontSize: '14px' }}>
-                    <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>{match.sectorIcon}</span>
-                    {match.sector}
-                  </p>
-                </div>
-                <MatchBadge score={match.score} />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-sm md:gap-lg">
+          {/* Match Card 1 */}
+          <div className="bg-surface-container-lowest rounded-xl p-md shadow-ambient border border-surface-variant/40 flex flex-col gap-md hover:shadow-ambient-md transition-shadow cursor-pointer">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 rounded-xl bg-surface-container-high overflow-hidden shrink-0 border border-surface-variant flex items-center justify-center">
+                <img
+                  alt="TechCorp Innova Logo"
+                  className="w-full h-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCK7HBBz5mTmre6XSf2opzt2E2Bpv3GYbiIwUcSckY-bI1h8v4VtLuE6LU21_3phJ7akLaeVXryIXxp5TSrRxSeFLOET694O-7QzC4tUQZj7TBaYjrNTzSQyNIeQKqU8CYaWn_AFO8NgdK0nF7_g2myIGoPfQPpR9Ok1wK81ZCz5CPDpXbu9sRNUEwKOyEIE5S8d0oO_07wyefRM-jTQTVfKmCRORT8bXaKcYW6D_NRBUEEDn4yrNJ0"
+                />
               </div>
+              <div className="flex-grow">
+                <h3 className="font-headline-sm text-headline-sm text-on-background font-semibold">
+                  TechCorp Innova
+                </h3>
+                <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+                  <span className="material-symbols-outlined text-[16px]">
+                    code
+                  </span>{' '}
+                  Software Development
+                </p>
+              </div>
+              <div className="flex flex-col items-end shrink-0">
+                <span className="font-headline-md text-headline-md text-primary leading-none">
+                  92%
+                </span>
+                <span className="font-label-sm text-label-sm text-on-surface-variant">
+                  Match
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <span className="bg-secondary-container text-on-secondary-container rounded-full px-3 py-1 font-label-sm border border-secondary/10">
+                React
+              </span>
+              <span className="bg-secondary-container text-on-secondary-container rounded-full px-3 py-1 font-label-sm border border-secondary/10">
+                UX/UI
+              </span>
+              <span className="bg-surface-container-high text-on-surface rounded-full px-3 py-1 font-label-sm border border-surface-variant flex items-center gap-1">
+                <span className="material-symbols-outlined text-[14px]">
+                  public
+                </span>{' '}
+                Remoto
+              </span>
+            </div>
+            <div className="flex gap-sm mt-2">
+              <button className="flex-1 py-2 px-4 rounded-lg font-label-md text-label-md border-2 border-outline text-on-surface hover:bg-surface-variant/50 transition-colors focus:ring-2 focus:ring-primary focus:outline-none">
+                Ignorar
+              </button>
+              <button className="flex-1 py-2 px-4 rounded-lg font-label-md text-label-md bg-primary text-on-primary hover:bg-primary/90 transition-colors shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary focus:outline-none">
+                Conectar
+              </button>
+            </div>
+          </div>
 
-              {/* Skills chips */}
-              <div className="flex flex-wrap gap-2">
-                {match.skills.map((skill) => (
-                  <Chip key={skill} variant="skill">{skill}</Chip>
-                ))}
-                <Chip variant="location" icon="public">{match.workMode}</Chip>
+          {/* Match Card 2 */}
+          <div className="bg-surface-container-lowest rounded-xl p-md shadow-ambient border border-surface-variant/40 flex flex-col gap-md hover:shadow-ambient-md transition-shadow">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 rounded-xl bg-surface-container-high overflow-hidden shrink-0 border border-surface-variant flex items-center justify-center p-2">
+                <span className="material-symbols-outlined text-4xl text-tertiary">
+                  design_services
+                </span>
               </div>
-
-              {/* Action buttons */}
-              <div className="flex gap-[--spacing-sm] mt-2">
-                <button
-                  className="flex-1 py-2 px-4 rounded-[--radius-lg] text-label-md border-2 border-[--color-outline] text-[--color-on-surface] hover:bg-[--color-surface-variant]/50 transition-colors focus:ring-2 focus:ring-[--color-primary] focus:outline-none"
-                >
-                  Ignorar
-                </button>
-                <button
-                  className="flex-1 py-2 px-4 rounded-[--radius-lg] text-label-md bg-[--color-primary] text-[--color-on-primary] hover:opacity-90 transition-all shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-[--color-primary] focus:outline-none"
-                >
-                  Conectar
-                </button>
+              <div className="flex-grow">
+                <h3 className="font-headline-sm text-headline-sm text-on-background font-semibold">
+                  Studio Creative
+                </h3>
+                <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+                  <span className="material-symbols-outlined text-[16px]">
+                    palette
+                  </span>{' '}
+                  Product Design
+                </p>
               </div>
-            </Link>
-          ))}
+              <div className="flex flex-col items-end shrink-0">
+                <span className="font-headline-md text-headline-md text-secondary leading-none">
+                  88%
+                </span>
+                <span className="font-label-sm text-label-sm text-on-surface-variant">
+                  Match
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <span className="bg-secondary-container text-on-secondary-container rounded-full px-3 py-1 font-label-sm border border-secondary/10">
+                Figma
+              </span>
+              <span className="bg-secondary-container text-on-secondary-container rounded-full px-3 py-1 font-label-sm border border-secondary/10">
+                Design Systems
+              </span>
+              <span className="bg-surface-container-high text-on-surface rounded-full px-3 py-1 font-label-sm border border-surface-variant flex items-center gap-1">
+                <span className="material-symbols-outlined text-[14px]">
+                  location_on
+                </span>{' '}
+                Híbrido
+              </span>
+            </div>
+            <div className="flex gap-sm mt-2">
+              <button className="flex-1 py-2 px-4 rounded-lg font-label-md text-label-md border-2 border-outline text-on-surface hover:bg-surface-variant/50 transition-colors focus:ring-2 focus:ring-primary focus:outline-none">
+                Ignorar
+              </button>
+              <button className="flex-1 py-2 px-4 rounded-lg font-label-md text-label-md bg-primary text-on-primary hover:bg-primary/90 transition-colors shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-offset-background focus:ring-primary focus:outline-none">
+                Conectar
+              </button>
+            </div>
+          </div>
         </div>
       </section>
     </main>
   );
 }
+

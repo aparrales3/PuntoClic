@@ -33,7 +33,11 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        {/* Material Symbols */}
+        {/* Material Symbols & Fonts */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+        />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
