@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { LogoutButton } from '@/components/design-system';
 
 export default function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState<'general' | 'operaciones'>('general');
@@ -65,6 +66,8 @@ export default function AdminDashboardPage() {
             <span className="material-symbols-outlined text-sm">download</span>
             Exportar
           </button>
+
+          <LogoutButton variant="button" label="Cerrar sesión" />
         </div>
       </header>
 

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { LogoutButton } from '@/components/design-system';
 
 export const metadata: Metadata = {
   title: 'Permisos de la Aplicación - PUNTOCLICK',
@@ -79,6 +80,21 @@ export default function PermisosPage() {
               <p className="font-label-sm text-label-sm text-on-surface-variant">
                 Encuentra ferias, hubs y conexiones relevantes cerca de ti.
               </p>
+            </div>
+          </div>
+
+          {/* Account & Session Management */}
+          <div className="mt-lg p-md bg-surface-container-low rounded-xl border border-surface-container-high shadow-ambient">
+            <h3 className="font-headline-sm text-on-surface font-bold mb-xs flex items-center gap-2">
+              <span className="material-symbols-outlined text-primary">account_circle</span>
+              Cuenta y Sesión
+            </h3>
+            <p className="font-body-sm text-body-sm text-on-surface-variant mb-md">
+              Gestiona tu sesión activa en este dispositivo.
+            </p>
+            <div className="flex flex-wrap items-center justify-between gap-sm pt-sm border-t border-surface-container-high">
+              <span className="text-sm text-on-surface-variant">¿Deseas salir de tu cuenta?</span>
+              <LogoutButton variant="button" label="Cerrar sesión" />
             </div>
           </div>
         </div>

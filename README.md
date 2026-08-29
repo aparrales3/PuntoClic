@@ -21,112 +21,36 @@ El frontend fue construido con **Next.js 16 (App Router)**, **TypeScript**, y **
 | Categoría | Tecnología / Librería | Uso |
 | :--- | :--- | :--- |
 | **Framework Principal** | [Next.js 16 (Turbopack)](https://nextjs.org/) | App Router, SSR/SSG y arquitectura basada en Server Components |
+| **Base de Datos Serverless** | [Neon Lakebase Postgres](https://neon.tech/) | Base de datos PostgreSQL serverless con pooling y Drizzle ORM |
+| **Autenticación & Sesión** | [Neon Auth & Better Auth (JWT)](https://neon.tech/docs/guides/neon-auth) | Inicio de sesión seguro con JWT HTTP-only, OAuth y bcryptjs |
+| **Almacenamiento Multimedia** | [Cloudinary](https://cloudinary.com/) | Carga, recorte inteligente centrado en rostros y optimización de fotos de perfil |
+| **Servicio de Correos** | [Resend](https://resend.com/) | Envío de correos transaccionales (bienvenida y recuperación de contraseñas) |
 | **Lenguaje** | [TypeScript](https://www.typescriptlang.org/) | Tipado estático y seguridad en componentes |
 | **Estilos & Diseño** | [Tailwind CSS v4](https://tailwindcss.com/) | Sistema de diseño tokenizado mediante `@theme` en CSS puro |
 | **Iconografía** | [Google Material Symbols Outlined](https://fonts.google.com/icons) | Iconos dinámicos en toda la interfaz |
 | **Gestión de Estado** | [Zustand](https://github.com/pmndrs/zustand) | Manejo de formularios multi-paso de registro de talento y empresa |
-| **Recursos Visuales** | Imágenes HD Locales | Activos optimizados guardados en `public/images/` para evitar cuellos de botella externos |
-| **Despliegue** | [Vercel](https://vercel.com/) | Integración continua y producción estática |
+| **Despliegue** | [Vercel](https://vercel.com/) | Integración continua y producción |
 
 ---
 
-## 📐 Sistema de Diseño (Bee-Hive Philosophy)
+## 👥 Usuarios de Prueba en Neon Postgres (Credenciales Reales)
 
-El sistema de colores y tipografía sigue la escala tokenizada `@theme` configurada en [`src/app/globals.css`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/globals.css):
+La plataforma cuenta con un sistema de inicio de sesión directo con selector rápido en [`/auth/login`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/auth/login/page.tsx) respaldado por usuarios reales en la base de datos de **Neon Postgres**:
 
-- **Primary (Bee Yellow):** `#785a00` / `#f4be37` / `#ffdf9d`
-- **Secondary (Celeste Pastel):** `#4a6360` / `#cae5e1`
-- **Tertiary (Verde Grisáceo Organic):** `#56615a` / `#bec9c1`
-- **Surface & Background (Warm Neutral/Cream):** `#fff8f2` / `#fdf2e3` / `#201b12`
-- **Tipografía:** `Montserrat` para encabezados (`font-headline`) e `Inter` para cuerpos de texto (`font-sans`).
+| Rol | Correo Electrónico | Contraseña | Perfil Sembrado en Neon | Dashboard / Módulo Principal |
+| :--- | :--- | :--- | :--- | :--- |
+| **Talento (Principal)** | `alejandro@talento.com` | `Talento1@` | Alejandro Martínez (Full Stack - Managua) | [`/talento/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/talento/dashboard) |
+| **Talento (UI/UX)** | `maria.silva@talento.com` | `Talento1@` | María José Silva (Product Designer - León) | [`/talento/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/talento/dashboard) |
+| **Talento (DevOps)** | `carlos.bendana@talento.com` | `Talento1@` | Carlos Bendaña (Cloud Engineer - Granada) | [`/talento/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/talento/dashboard) |
+| **Talento (Security)** | `sofia.rostran@talento.com` | `Talento1@` | Sofía Rostrán (Cybersecurity - Estelí) | [`/talento/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/talento/dashboard) |
+| **Empresa (Tech)** | `techhive@empresa.com` | `Empresa1@` | TechHive Nicaragua S.A. (Software - Managua) | [`/empresa/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/empresa/dashboard) |
+| **Empresa (IoT/Agro)** | `agrotech@empresa.com` | `Empresa1@` | AgroTech del Norte (IoT Agrícola - Matagalpa) | [`/empresa/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/empresa/dashboard) |
+| **Empresa (FinTech)** | `fintech@empresa.com` | `Empresa1@` | FinTech Nica S.A. (Pagos Digitales - Managua) | [`/empresa/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/empresa/dashboard) |
+| **Institución (UNI)** | `rectoria@nodo.edu` | `Nodo2026@` | Univ. Nacional de Ingeniería (Managua) | [`/institucion/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/institucion/dashboard) |
+| **Institución (INATEC)** | `contacto@inatec.edu.ni` | `Nodo2026@` | Tecnológico Nacional INATEC (Nacional) | [`/institucion/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/institucion/dashboard) |
+| **Administrador** | `admin@puntoclick.com` | `Admin2026@` | Administrador General del Ecosistema | [`/admin/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/admin/dashboard) |
 
----
-
-## 🗺️ Mapa Completo de Vistas Sincronizadas (43 Páginas)
-
-Todas las vistas fueron mapeadas directamente desde las carpetas exportadas en `Diseño/` manteniendo su diseño y adaptabilidad responsiva:
-
-### 1. Onboarding e Información General
-| Vista en App | Ruta | Diseño HTML de Origen |
-| :--- | :--- | :--- |
-| Landing / Bienvenida 1 | [`/`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/page.tsx) | `bienvenida_puntoclick_1/code.html` |
-| Cómo Funciona (Paso 1 - Talento) | [`/como-funciona`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/como-funciona/page.tsx) | `c_mo_funciona_p_gina_1/code.html` |
-| Cómo Funciona (Paso 2 - Empresas) | [`/como-funciona/2`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/como-funciona/2/page.tsx) | `c_mo_funciona_p_gina_2/code.html` |
-| Cómo Funciona (Paso 3 - Instituciones) | [`/como-funciona/3`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/como-funciona/3/page.tsx) | `c_mo_funciona_p_gina_3/code.html` |
-| Pantalla de Carga (Loading Shell) | [`/loading-view`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/loading-view/page.tsx) | `pantalla_de_carga/code.html` |
-
-### 2. Autenticación y Recuperación de Cuenta
-| Vista en App | Ruta | Diseño HTML de Origen |
-| :--- | :--- | :--- |
-| Inicio de Sesión (Login) | [`/auth/login`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/auth/login/page.tsx) | `login_puntoclick_1/code.html` |
-| Recuperar Contraseña | [`/auth/recuperar-contrasena`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/auth/recuperar-contrasena/page.tsx) | `recuperar_contrase_a/code.html` |
-| Código de Recuperación (OTP) | [`/auth/codigo-recuperacion`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/auth/codigo-recuperacion/page.tsx) | `c_digo_de_recuperaci_n/code.html` |
-| Nueva Contraseña | [`/auth/nueva-contrasena`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/auth/nueva-contrasena/page.tsx) | `nueva_contrase_a/code.html` |
-| Contraseña Cambiada | [`/auth/contrasena-cambiada`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/auth/contrasena-cambiada/page.tsx) | `contrase_a_cambiada/code.html` |
-
-### 3. Flujos de Registro Multi-Paso
-| Vista en App | Ruta | Descripción |
-| :--- | :--- | :--- |
-| Selección de Tipo de Usuario | [`/auth/register`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/auth/register/page.tsx) | `seleccionar_tipo_de_usuario/code.html` |
-| Registro de Talento (12 Pasos) | [`/auth/register/talento`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/auth/register/talento/page.tsx) | `registro_talento_*` (Datos, fecha, cédula, género, teléfono, dirección, educación, experiencia, CV, foto, password, confirmación) |
-| Registro de Empresa | [`/auth/register/empresa`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/auth/register/empresa/page.tsx) | `registro_empresa_*` (Identidad, sector, ubicación, contacto, oferta, redes, logo, confirmación) |
-| Registro Institucional | [`/auth/register/institucion`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/auth/register/institucion/page.tsx) | `solicitud_de_registro_institucional/code.html` |
-
-### 4. Dashboards y Módulos de Usuario
-| Vista en App | Ruta | Diseño HTML de Origen |
-| :--- | :--- | :--- |
-| Dashboard Talento | [`/talento/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/talento/dashboard/page.tsx) | `dashboard_talento_puntoclick_conectado/code.html` |
-| Dashboard Empresa | [`/empresa/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/empresa/dashboard/page.tsx) | `dashboard_empresa_puntoclick_conectado/code.html` |
-| Perfil Empresa | [`/empresa/perfil`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/empresa/perfil/page.tsx) | `perfil_empresa_puntoclick/code.html` |
-| Dashboard Institucional | [`/institucion/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/institucion/dashboard/page.tsx) | `dashboard_institucional_puntoclick_conectado/code.html` |
-| Perfil e Información Institucional | [`/institucion/perfil`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/institucion/perfil/page.tsx) | `perfil_institucional_y_directorio/code.html` |
-| Configuración Institucional | [`/institucion/configuracion`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/institucion/configuracion/page.tsx) | `configuraci_n_institucional_puntoclick/code.html` |
-| Estado Solicitud Institución | [`/institucion/estado-solicitud`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/institucion/estado-solicitud/page.tsx) | `estado_de_solicitud_institucional/code.html` |
-| Programas Institucionales | [`/institucion/programas`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/institucion/programas/page.tsx) | `gesti_n_de_programas_y_oportunidades/code.html` |
-
-### 5. Panel Administrativo
-| Vista en App | Ruta | Diseño HTML de Origen |
-| :--- | :--- | :--- |
-| Login Administrativo | [`/admin/login`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/admin/login/page.tsx) | `admin_login_puntoclick/code.html` |
-| Dashboard Admin | [`/admin/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/admin/dashboard/page.tsx) | `admin_dashboard_puntoclick_conectado/code.html` |
-| Gestión de Usuarios | [`/admin/usuarios`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/admin/usuarios/page.tsx) | `gesti_n_de_usuarios_puntoclick/code.html` |
-| Solicitudes Institucionales | [`/admin/solicitudes-institucionales`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/admin/solicitudes-institucionales/page.tsx) | `solicitudes_institucionales_puntoclick/code.html` |
-
-### 6. Módulos de Conexión, Feria y Mentores
-| Vista en App | Ruta | Diseño HTML de Origen |
-| :--- | :--- | :--- |
-| Match Center | [`/match-center`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/match-center/page.tsx) | `match_center_puntoclick/code.html` |
-| Recomendación de Talento | [`/match-talento`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/match-talento/page.tsx) | `recomendaci_n_y_match_de_talento/code.html` |
-| Feria y Eventos | [`/feria`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/feria/page.tsx) | `feria_y_eventos_puntoclick/code.html` |
-| Mapa de Feria | [`/feria/mapa`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/feria/mapa/page.tsx) | `mapa_y_directorio_de_feria/code.html` |
-| Agenda de Feria | [`/feria/agenda`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/feria/agenda/page.tsx) | `agenda_e_identidad_puntoclick_feria/code.html` |
-| Directorio de Mentores | [`/mentores`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/mentores/page.tsx) | `perfiles_de_mentores_puntoclick/code.html` |
-| Diagnóstico Mentor | [`/mentores/diagnostico`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/mentores/diagnostico/page.tsx) | `gesti_n_de_diagn_stico_mentor/code.html` |
-| Mapa de Necesidades del Mercado | [`/mapa-necesidades`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/mapa-necesidades/page.tsx) | `mapa_de_necesidades_del_mercado/code.html` |
-
-### 7. Configuración, Transacciones y Legales
-| Vista en App | Ruta | Diseño HTML de Origen |
-| :--- | :--- | :--- |
-| Permisos de la App | [`/configuracion/permisos`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/configuracion/permisos/page.tsx) | `permisos_de_la_aplicaci_n/code.html` |
-| Éxito de Transacción | [`/exito`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/exito/page.tsx) | `pantalla_de_xito/code.html` |
-| Error Genérico | [`/error-view`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/error-view/page.tsx) | `pantalla_de_error/code.html` |
-| Error de Conexión | [`/error-conexion`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/error-conexion/page.tsx) | `error_de_conexi_n/code.html` |
-| Términos y Condiciones | [`/terminos`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/terminos/page.tsx) | `t_rminos_y_condiciones/code.html` |
-| Política de Privacidad | [`/privacidad`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/privacidad/page.tsx) | `pol_tica_de_privacidad/code.html` |
-
----
-
-## 👥 Usuarios de Prueba (Credenciales Demo)
-
-La plataforma cuenta con un sistema de inicio de sesión directo con selector rápido en [`/auth/login`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/auth/login/page.tsx) y credenciales preconfiguradas para explorar cada rol y sus dashboards:
-
-| Rol | Correo Electrónico | Contraseña | Dashboard / Módulo Principal |
-| :--- | :--- | :--- | :--- |
-| **Talento** | `alejandro@talento.com` | `talento123` | [`/talento/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/talento/dashboard) (Métricas de perfil, vacantes, postulaciones) |
-| **Empresa** | `techhive@empresa.com` | `empresa123` | [`/empresa/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/empresa/dashboard) (Gestión de vacantes, candidatos y perfil) |
-| **Institución** | `rectoria@nodo.edu` | `institucion123` | [`/institucion/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/institucion/dashboard) (Programas, validaciones de egresados, mapa) |
-| **Mentor** | `mentor@puntoclick.com` | `mentor123` | [`/mentores/diagnostico`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/mentores/diagnostico) (Diagnóstico de habilidades, sesiones) |
-| **Administrador** | `admin@puntoclick.com` | `admin123` | [`/admin/dashboard`](file:///home/disa/Documentos/dev/PuntoClic/app/src/app/admin/dashboard) (Control de usuarios y aprobación de instituciones) |
+> **Nota para resembrar la base de datos:** Ejecuta `npm run db:seed` para restaurar o actualizar todos los datos de prueba en Neon Postgres.
 
 ---
 

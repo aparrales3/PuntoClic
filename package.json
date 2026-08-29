@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:seed": "tsx src/infrastructure/db/seed.ts",
+    "db:push": "drizzle-kit push --force"
   },
   "dependencies": {
     "@neon/config": "^1.0.5",
