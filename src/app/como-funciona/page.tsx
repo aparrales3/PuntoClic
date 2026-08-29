@@ -26,8 +26,11 @@ export default function ComoFuncionaPage() {
           >
             <span className="material-symbols-outlined text-[24px]">arrow_back</span>
           </Link>
-          <div className="font-headline-md text-headline-md text-primary uppercase tracking-wider font-bold">
-            PUNTOCLICK
+          <div className="flex items-center gap-2">
+            <img src="/logo.png" alt="PUNTOCLICK Logo" className="h-7 w-auto object-contain" />
+            <span className="font-headline-md text-headline-md text-primary uppercase tracking-wider font-bold">
+              PUNTOCLICK
+            </span>
           </div>
           <Link
             href="/auth/register"

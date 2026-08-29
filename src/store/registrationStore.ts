@@ -18,6 +18,7 @@ export interface TalentRegistrationData {
 }
 
 export interface CompanyRegistrationData {
+  companyType?: string;
   companyName: string;
   email: string;
   legalName: string;

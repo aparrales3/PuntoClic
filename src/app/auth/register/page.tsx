@@ -57,7 +57,7 @@ export default function SelectUserTypePage() {
 
           {/* EMPRESA Card (Featured / Elevated) */}
           <Link
-            href="/auth/register/empresa"
+            href="/auth/register/empresa/tipo"
             className="group relative flex flex-col items-center p-lg bg-surface-container-low rounded-xl border border-surface-variant shadow-[0_4px_20px_rgba(32,27,18,0.05)] hover:shadow-[0_8px_30px_rgba(120,90,0,0.1)] hover:border-primary transition-all duration-300 text-left w-full h-full md:-translate-y-4"
           >
             <div className="w-20 h-20 mb-md rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors duration-300">
@@ -76,7 +76,7 @@ export default function SelectUserTypePage() {
 
           {/* INSTITUCIÓN Card */}
           <Link
-            href="/auth/register/institucion"
+            href="/auth/register/institucion/tipo"
             className="group relative flex flex-col items-center p-lg bg-surface-container-low rounded-xl border border-surface-variant shadow-[0_4px_20px_rgba(32,27,18,0.05)] hover:shadow-[0_8px_30px_rgba(120,90,0,0.1)] hover:border-primary transition-all duration-300 text-left w-full h-full"
           >
             <div className="w-20 h-20 mb-md rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors duration-300">
