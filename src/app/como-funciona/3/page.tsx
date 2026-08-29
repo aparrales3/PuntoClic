@@ -17,7 +17,7 @@ export default function ComoFuncionaInstitucionesPage() {
         <div className="absolute bottom-[-10%] left-[-10%] w-80 h-80 bg-secondary-container rounded-full mix-blend-multiply filter blur-[60px] opacity-30"></div>
       </div>
 
-      <main className="w-full max-w-[540px] md:max-w-[720px] mx-auto px-6 py-8 relative z-10 flex flex-col min-h-screen justify-between items-center text-center">
+      <main className="w-full max-w-[540px] md:max-w-[840px] mx-auto px-6 py-8 relative z-10 flex flex-col min-h-screen justify-between items-center text-center">
         {/* Header */}
         <header className="w-full flex justify-between items-center py-2 mb-6">
           <Link
@@ -38,9 +38,9 @@ export default function ComoFuncionaInstitucionesPage() {
           </Link>
         </header>
 
-        {/* Content */}
+        {/* Content - Expanded Prominent Frame */}
         <div className="flex-1 flex flex-col items-center justify-center my-auto w-full">
-          <div className="relative w-full max-w-md aspect-video max-h-[320px] mb-6 rounded-2xl overflow-hidden shadow-ambient border border-surface-container-low bg-surface-container-high">
+          <div className="relative w-full max-w-xl md:max-w-2xl h-64 sm:h-80 md:h-[380px] mb-8 rounded-2xl overflow-hidden shadow-ambient-md border border-surface-container-low bg-surface-container-high flex items-center justify-center">
             <Image
               src={comoFunciona3Img}
               alt="Fortalecemos Instituciones - Campus Digital"
@@ -50,11 +50,11 @@ export default function ComoFuncionaInstitucionesPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent pointer-events-none"></div>
           </div>
 
-          <div className="text-center mb-6 w-full max-w-[500px]">
-            <h2 className="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-background mb-3 font-bold">
+          <div className="text-center mb-6 w-full max-w-[640px]">
+            <h2 className="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-background mb-4 font-bold">
               Fortalecemos Instituciones
             </h2>
-            <p className="font-body-md md:font-body-lg text-body-md text-on-surface-variant leading-relaxed">
+            <p className="font-body-md md:font-body-lg text-body-md md:text-body-lg text-on-surface-variant leading-relaxed">
               Conectamos tu organización con el mercado real. Accede a talento verificado, herramientas de gestión y datos clave para impulsar tu crecimiento en el ecosistema.
             </p>
           </div>
