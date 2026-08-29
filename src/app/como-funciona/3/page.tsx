@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
+import comoFunciona3Img from '../como-funciona-3.jpg';
 
 export const metadata: Metadata = {
   title: 'Fortalecemos Instituciones - PUNTOCLICK',
@@ -39,10 +41,11 @@ export default function ComoFuncionaInstitucionesPage() {
         {/* Content */}
         <div className="flex-1 flex flex-col items-center justify-center my-auto w-full">
           <div className="relative w-full max-w-md aspect-video max-h-[320px] mb-6 rounded-2xl overflow-hidden shadow-ambient border border-surface-container-low bg-surface-container-high">
-            <img
-              src="/images/como-funciona-3.jpg"
+            <Image
+              src={comoFunciona3Img}
               alt="Fortalecemos Instituciones - Campus Digital"
               className="w-full h-full object-cover object-center"
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent pointer-events-none"></div>
           </div>

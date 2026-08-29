@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
+import comoFunciona2Img from '../como-funciona-2.jpg';
 
 export const metadata: Metadata = {
   title: 'Empoderamos Empresas - PUNTOCLICK',
@@ -41,11 +43,12 @@ export default function ComoFuncionaEmpresasPage() {
           {/* Image Side */}
           <div className="relative flex justify-center w-full">
             <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-ambient bg-surface-container-low border border-surface-container-highest p-3 flex flex-col justify-center">
-              <div className="w-full h-52 md:h-64 rounded-xl overflow-hidden mb-3 relative bg-surface-container-high">
-                <img
-                  src="/images/como-funciona-2.jpg"
+              <div className="w-full h-52 md:h-64 rounded-xl overflow-hidden mb-3 relative bg-surface-container-high flex items-center justify-center">
+                <Image
+                  src={comoFunciona2Img}
                   alt="Empoderamos Empresas - Soluciones Expertas"
                   className="w-full h-full object-cover object-center"
+                  priority
                 />
               </div>
               <div className="flex items-center gap-3 bg-surface rounded-lg p-3 shadow-sm border border-surface-container">
