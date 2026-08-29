@@ -2,32 +2,43 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Cómo funciona (Instituciones) - PUNTOCLICK',
-  description: 'Fortalecemos instituciones conectando tu organización con el mercado real.',
+  title: 'Fortalecemos Instituciones - PUNTOCLICK',
+  description: 'Conectamos tu organización con el mercado real.',
 };
 
 export default function ComoFuncionaInstitucionesPage() {
   return (
-    <div className="bg-background text-on-background min-h-screen flex flex-col font-body-md">
-      {/* Header */}
-      <header className="flex justify-between items-center w-full px-margin-mobile md:px-lg py-sm bg-background">
-        <Link
-          href="/como-funciona/2"
-          className="p-2 text-primary hover:opacity-80 transition-opacity rounded-full flex items-center justify-center"
-          aria-label="Volver"
-        >
-          <span className="material-symbols-outlined">arrow_back</span>
-        </Link>
-        <div className="font-headline-md text-headline-md-mobile md:text-headline-md text-primary uppercase tracking-wider">
-          PUNTOCLICK
-        </div>
-        <div className="w-10" aria-hidden="true" />
-      </header>
+    <div className="bg-background text-on-background min-h-screen flex flex-col font-body-md relative overflow-hidden">
+      {/* Ambient Background Accents */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+        <div className="absolute top-[-10%] right-[-5%] w-96 h-96 bg-primary-container rounded-full mix-blend-multiply filter blur-[80px] opacity-40"></div>
+        <div className="absolute bottom-[-10%] left-[-10%] w-80 h-80 bg-secondary-container rounded-full mix-blend-multiply filter blur-[60px] opacity-30"></div>
+      </div>
 
-      {/* Main Content */}
-      <main className="flex-grow flex flex-col justify-center items-center px-margin-mobile md:px-lg pt-8 pb-md">
-        <div className="w-full max-w-md md:max-w-3xl mx-auto flex flex-col items-center flex-grow justify-center relative">
-          <div className="relative w-full aspect-square md:aspect-video max-h-[400px] mb-8 rounded-xl overflow-hidden shadow-ambient border border-surface-container-low">
+      <main className="w-full max-w-md md:max-w-3xl mx-auto px-margin-mobile py-md md:py-lg relative z-10 flex flex-col min-h-screen justify-between items-center">
+        {/* Header */}
+        <header className="w-full flex justify-between items-center py-sm mb-md">
+          <Link
+            href="/como-funciona/2"
+            className="p-2 text-on-surface-variant hover:opacity-80 transition-opacity rounded-full flex items-center justify-center"
+            aria-label="Volver"
+          >
+            <span className="material-symbols-outlined">arrow_back</span>
+          </Link>
+          <div className="font-headline-md text-headline-md-mobile md:text-headline-md text-primary uppercase tracking-wider font-bold">
+            PUNTOCLICK
+          </div>
+          <Link
+            href="/auth/register"
+            className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors font-bold"
+          >
+            Saltar
+          </Link>
+        </header>
+
+        {/* Content */}
+        <div className="flex flex-col items-center my-auto w-full">
+          <div className="relative w-full max-w-lg aspect-square md:aspect-video max-h-[360px] mb-8 rounded-xl overflow-hidden shadow-ambient border border-surface-container-low">
             <div
               className="absolute inset-0 bg-cover bg-center w-full h-full"
               style={{
@@ -38,24 +49,45 @@ export default function ComoFuncionaInstitucionesPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent"></div>
           </div>
 
-          <div className="text-center mb-10 w-full max-w-lg">
+          <div className="text-center mb-6 w-full max-w-lg">
             <h2 className="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl text-on-background mb-4 font-bold">
               Fortalecemos Instituciones
             </h2>
-            <p className="font-body-md md:font-body-lg text-body-md md:text-body-lg text-on-surface-variant">
+            <p className="font-body-md md:font-body-lg text-body-md text-on-surface-variant">
               Conectamos tu organización con el mercado real. Accede a talento verificado, herramientas de gestión y datos clave para impulsar tu crecimiento en el ecosistema.
             </p>
           </div>
+        </div>
 
-          <div className="w-full mt-auto flex flex-col items-center gap-6">
+        {/* Controls */}
+        <div className="w-full flex flex-col items-center mt-auto pb-lg">
+          {/* Pagination Dots */}
+          <div className="flex gap-2 mb-md items-center">
             <Link
-              href="/auth/register"
-              className="w-full md:w-auto min-w-[280px] bg-primary text-on-primary font-label-md text-label-md py-4 px-8 rounded-lg shadow-sm hover:opacity-90 transition-all flex items-center justify-center gap-2 font-bold"
-            >
-              Seleccionar tipo de usuario
-              <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
-            </Link>
+              href="/como-funciona"
+              className="w-2.5 h-2.5 rounded-full bg-surface-container-highest transition-all duration-300 block hover:bg-primary/50"
+              aria-label="Paso 1"
+            ></Link>
+            <Link
+              href="/como-funciona/2"
+              className="w-2.5 h-2.5 rounded-full bg-surface-container-highest transition-all duration-300 block hover:bg-primary/50"
+              aria-label="Paso 2"
+            ></Link>
+            <Link
+              href="/como-funciona/3"
+              className="w-8 h-2 rounded-full bg-primary transition-all duration-300 block"
+              aria-label="Paso 3"
+            ></Link>
           </div>
+
+          {/* Action Button */}
+          <Link
+            href="/auth/register"
+            className="w-full max-w-[300px] bg-primary text-on-primary font-label-md text-label-md py-4 rounded-xl shadow-md hover:bg-surface-tint hover:scale-[1.02] active:scale-95 transition-all duration-200 flex justify-center items-center gap-2 font-bold"
+          >
+            Seleccionar tipo de usuario
+            <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+          </Link>
         </div>
       </main>
     </div>
