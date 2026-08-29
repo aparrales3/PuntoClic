@@ -58,7 +58,7 @@ export default function Step11Password({ onNext, onBack }: { onNext: () => void,
       </header>
 
       {/* Main Content */}
-      <main className="flex-grow pt-24 pb-32 px-gutter-mobile max-w-xl mx-auto w-full flex flex-col">
+      <main className="flex-grow pt-24 pb-32 px-gutter-mobile max-w-[448px] mx-auto w-full flex flex-col">
         {/* Progress Bar */}
         <div className="mb-lg w-full">
           <div className="flex justify-between items-center mb-xs">

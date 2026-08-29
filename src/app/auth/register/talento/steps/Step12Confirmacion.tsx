@@ -19,7 +19,7 @@ export default function Step12Confirmacion() {
         <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-secondary-container rounded-full mix-blend-multiply filter blur-3xl opacity-30 pointer-events-none"></div>
 
         {/* Success Card */}
-        <div className="relative w-full max-w-md bg-surface-container-low rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-surface-variant p-lg md:p-xl flex flex-col items-center text-center">
+        <div className="relative w-full max-w-[448px] bg-surface-container-low rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-surface-variant p-lg md:p-xl flex flex-col items-center text-center">
           {/* Checkmark Icon */}
           <div className="w-24 h-24 rounded-full bg-primary-container flex items-center justify-center mb-md shadow-sm border-4 border-surface">
             <span className="material-symbols-outlined text-on-primary-container text-5xl">

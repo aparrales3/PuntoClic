@@ -65,7 +65,7 @@ export default function Step8Experiencia({ onNext, onBack }: { onNext: () => voi
         </div>
       </header>
       
-      <main className="flex-grow pt-24 pb-32 px-gutter-mobile md:px-md max-w-2xl mx-auto w-full">
+      <main className="flex-grow pt-24 pb-32 px-gutter-mobile md:px-md max-w-[600px] mx-auto w-full">
         {/* Progress Indicator */}
         <div className="mb-xl">
           <div className="flex justify-between items-center mb-sm">
@@ -184,7 +184,7 @@ export default function Step8Experiencia({ onNext, onBack }: { onNext: () => voi
       
       {/* Bottom Action Bar */}
       <div className="fixed bottom-0 left-0 w-full bg-surface-container shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 p-4 pb-safe">
-        <div className="max-w-2xl mx-auto flex justify-between gap-md">
+        <div className="max-w-[600px] mx-auto flex justify-between gap-md">
           <button 
             onClick={onBack}
             className="flex-1 py-3 px-6 rounded-lg border-2 border-outline text-on-surface font-label-md text-label-md hover:bg-surface-variant transition-colors active:scale-95 duration-150"

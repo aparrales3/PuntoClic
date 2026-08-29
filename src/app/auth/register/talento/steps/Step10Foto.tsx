@@ -40,7 +40,7 @@ export default function Step10Foto({ onNext, onBack }: { onNext: () => void, onB
       </header>
 
       {/* Main Content Canvas */}
-      <main className="flex-1 flex flex-col items-center justify-center px-gutter-mobile pt-24 pb-32 max-w-lg mx-auto w-full">
+      <main className="flex-1 flex flex-col items-center justify-center px-gutter-mobile pt-24 pb-32 max-w-[448px] mx-auto w-full">
         {/* Contextual Headline */}
         <h1 className="font-headline-xl-mobile text-headline-xl-mobile text-center mb-xl text-on-background font-bold">
           Sube tu foto de perfil

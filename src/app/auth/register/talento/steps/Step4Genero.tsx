@@ -32,7 +32,7 @@ export default function Step4Genero({ onNext, onBack }: StepProps) {
         <div className="w-12"></div>
       </header>
 
-      <main className="flex-grow flex flex-col px-margin-mobile max-w-lg mx-auto w-full pt-md pb-xl">
+      <main className="flex-grow flex flex-col px-margin-mobile max-w-[448px] mx-auto w-full pt-md pb-xl">
         {/* Progress Bar */}
         <div className="mb-lg">
           <div className="flex justify-between items-center mb-xs">
