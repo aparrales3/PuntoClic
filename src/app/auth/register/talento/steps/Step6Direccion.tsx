@@ -78,11 +78,23 @@ export default function Step6Direccion({ onNext, onBack }: { onNext: () => void,
                 id="departamento"
               >
                 <option disabled value="">Selecciona tu departamento</option>
-                <option value="antioquia">Antioquia</option>
-                <option value="atlantico">Atlántico</option>
-                <option value="bogota">Bogotá D.C.</option>
-                <option value="cundinamarca">Cundinamarca</option>
-                <option value="valle">Valle del Cauca</option>
+                <option value="managua">Managua</option>
+                <option value="leon">León</option>
+                <option value="matagalpa">Matagalpa</option>
+                <option value="esteli">Estelí</option>
+                <option value="chinandega">Chinandega</option>
+                <option value="masaya">Masaya</option>
+                <option value="granada">Granada</option>
+                <option value="rivas">Rivas</option>
+                <option value="carazo">Carazo</option>
+                <option value="nueva_segovia">Nueva Segovia</option>
+                <option value="madriz">Madriz</option>
+                <option value="jinotega">Jinotega</option>
+                <option value="boaco">Boaco</option>
+                <option value="chontales">Chontales</option>
+                <option value="rio_san_juan">Río San Juan</option>
+                <option value="racn">RACCN (Caribe Norte)</option>
+                <option value="racs">RACCS (Caribe Sur)</option>
               </select>
               <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none group-focus-within:text-primary transition-colors">
                 expand_more
@@ -93,7 +105,7 @@ export default function Step6Direccion({ onNext, onBack }: { onNext: () => void,
           {/* Ciudad Field */}
           <div className="flex flex-col gap-xs group">
             <label className="font-label-sm text-label-sm text-on-surface-variant ml-1 group-focus-within:text-primary transition-colors" htmlFor="ciudad">
-              Ciudad
+              Municipio / Ciudad
             </label>
             <div className="relative">
               <select 
@@ -103,12 +115,21 @@ export default function Step6Direccion({ onNext, onBack }: { onNext: () => void,
                 className="w-full bg-surface-container-lowest border border-outline focus:border-primary text-on-surface rounded-lg px-4 py-4 font-body-md text-body-md outline-none transition-all shadow-sm focus:shadow-[0_0_0_2px_rgba(120,90,0,0.2)] cursor-pointer appearance-none" 
                 id="ciudad"
               >
-                <option disabled value="">Selecciona tu ciudad</option>
-                <option value="medellin">Medellín</option>
-                <option value="barranquilla">Barranquilla</option>
-                <option value="bogota">Bogotá</option>
-                <option value="chia">Chía</option>
-                <option value="cali">Cali</option>
+                <option disabled value="">Selecciona tu municipio</option>
+                <option value="managua">Managua</option>
+                <option value="ciudad_sandino">Ciudad Sandino</option>
+                <option value="tipitapa">Tipitapa</option>
+                <option value="leon">León</option>
+                <option value="matagalpa">Matagalpa</option>
+                <option value="esteli">Estelí</option>
+                <option value="chinandega">Chinandega</option>
+                <option value="masaya">Masaya</option>
+                <option value="granada">Granada</option>
+                <option value="rivas">Rivas</option>
+                <option value="jinotepe">Jinotepe</option>
+                <option value="san_juan_del_sur">San Juan del Sur</option>
+                <option value="bluefields">Bluefields</option>
+                <option value="puerto_cabezas">Puerto Cabezas / Bilwi</option>
               </select>
               <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline pointer-events-none group-focus-within:text-primary transition-colors">
                 expand_more
