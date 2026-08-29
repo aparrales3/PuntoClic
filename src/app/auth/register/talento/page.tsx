@@ -7,6 +7,7 @@ import Step2FechaNacimiento from './steps/Step2FechaNacimiento';
 import Step3Cedula from './steps/Step3Cedula';
 
 import Step4Genero from './steps/Step4Genero';
+import Step5Telefono from './steps/Step5Telefono';
 
 function TalentRegistrationContent() {
   const searchParams = useSearchParams();
@@ -34,7 +35,8 @@ function TalentRegistrationContent() {
       return <Step3Cedula onNext={handleNext} onBack={handleBack} />;
     case 4:
       return <Step4Genero onNext={handleNext} onBack={handleBack} />;
-    // TODO: Add other steps here
+    case 5:
+      return <Step5Telefono onNext={() => router.push('/talento/dashboard')} onBack={handleBack} />;
     default:
       return <Step1DatosPersonales onNext={handleNext} onBack={handleBack} />;
   }
