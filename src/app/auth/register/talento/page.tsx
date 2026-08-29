@@ -8,6 +8,9 @@ import Step3Cedula from './steps/Step3Cedula';
 
 import Step4Genero from './steps/Step4Genero';
 import Step5Telefono from './steps/Step5Telefono';
+import Step6Direccion from './steps/Step6Direccion';
+import Step7Educacion from './steps/Step7Educacion';
+import Step8Experiencia from './steps/Step8Experiencia';
 
 function TalentRegistrationContent() {
   const searchParams = useSearchParams();
@@ -36,7 +39,13 @@ function TalentRegistrationContent() {
     case 4:
       return <Step4Genero onNext={handleNext} onBack={handleBack} />;
     case 5:
-      return <Step5Telefono onNext={() => router.push('/talento/dashboard')} onBack={handleBack} />;
+      return <Step5Telefono onNext={handleNext} onBack={handleBack} />;
+    case 6:
+      return <Step6Direccion onNext={handleNext} onBack={handleBack} />;
+    case 7:
+      return <Step7Educacion onNext={handleNext} onBack={handleBack} />;
+    case 8:
+      return <Step8Experiencia onNext={handleNext} onBack={handleBack} />;
     default:
       return <Step1DatosPersonales onNext={handleNext} onBack={handleBack} />;
   }
@@ -44,7 +53,7 @@ function TalentRegistrationContent() {
 
 export default function TalentRegistrationPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-background w-full max-w-md" />}>
+    <Suspense fallback={<div className="min-h-screen bg-background w-full max-w-[448px]" />}>
       <TalentRegistrationContent />
     </Suspense>
   );
