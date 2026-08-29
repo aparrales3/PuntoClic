@@ -38,15 +38,13 @@ export default function ComoFuncionaInstitucionesPage() {
 
         {/* Content */}
         <div className="flex-1 flex flex-col items-center justify-center my-auto w-full">
-          <div className="relative w-full max-w-md aspect-square md:aspect-video max-h-[320px] mb-6 rounded-xl overflow-hidden shadow-ambient border border-surface-container-low">
-            <div
-              className="absolute inset-0 bg-cover bg-center w-full h-full"
-              style={{
-                backgroundImage:
-                  "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAxWVvqMIpgtZE6AjXxO2Lc6maHZsQIWKkFCzhZvV-7LQrOvcnkJYmEtf5AKIqM4jc3v-HVxP_6YkH8jrcx1FbEJv8qKYb54o_IieWDbnX4fOIS-g0GgBw3nS_MZkSQ4jOmhKrDwujzOKv33Nao4QKLvSUsY17E249Wv0rgm3-26YjE88lH0rw3ZfyZ3FQ5vRRh8Ao0dEJKpWhZdMhtRHS2y98Er8FZSxrxzI79D6hqtT0SQMjfOt4z')",
-              }}
-            ></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent"></div>
+          <div className="relative w-full max-w-md aspect-video max-h-[320px] mb-6 rounded-2xl overflow-hidden shadow-ambient border border-surface-container-low bg-surface-container-high">
+            <img
+              src="/images/como-funciona-3.jpg"
+              alt="Fortalecemos Instituciones - Campus Digital"
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent pointer-events-none"></div>
           </div>
 
           <div className="text-center mb-6 w-full max-w-[500px]">

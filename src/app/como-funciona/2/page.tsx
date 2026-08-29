@@ -39,16 +39,16 @@ export default function ComoFuncionaEmpresasPage() {
         {/* Grid Content */}
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center my-auto">
           {/* Image Side */}
-          <div className="relative flex justify-center w-full min-h-[260px]">
-            <div className="relative w-full max-w-sm rounded-xl overflow-hidden shadow-ambient bg-surface-container-low border border-surface-container-highest p-4 flex flex-col justify-center">
-              <div
-                className="w-full h-48 md:h-56 bg-cover bg-center rounded-lg mb-4"
-                style={{
-                  backgroundImage:
-                    "url('https://lh3.googleusercontent.com/aida-public/AB6AXuCluNAbw7Vu1bYeF72099v7a5BdF06TfQhLgbcPu46_TXIS5P15cRGj_Se8c3LnUeHgoQXa9gGD-W8R3eXd8GcctvqsPlDmfBtZ5lOwVY8IqzW-M5iqzWt-c7NOXoxe6qDrpVHJF9k2tqj2GiVFas9ww94IRPmXQ8n8uf7tRGrjLpuRsheP7TF6_04hz18oMHwb9Xnhg859pvE3m4mMhibQHJeGHT-Ah3jFkD-UXrbHisd7-1jeQCV5')",
-                }}
-              ></div>
-              <div className="flex items-center gap-3 bg-surface rounded-lg p-3 shadow-sm">
+          <div className="relative flex justify-center w-full">
+            <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-ambient bg-surface-container-low border border-surface-container-highest p-3 flex flex-col justify-center">
+              <div className="w-full h-52 md:h-64 rounded-xl overflow-hidden mb-3 relative bg-surface-container-high">
+                <img
+                  src="/images/como-funciona-2.jpg"
+                  alt="Empoderamos Empresas - Soluciones Expertas"
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
+              <div className="flex items-center gap-3 bg-surface rounded-lg p-3 shadow-sm border border-surface-container">
                 <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container flex-shrink-0">
                   <span className="material-symbols-outlined">lightbulb</span>
                 </div>
