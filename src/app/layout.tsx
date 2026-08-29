@@ -6,6 +6,9 @@ export const metadata: Metadata = {
     default: 'PUNTOCLICK — Conecta Talento con Oportunidades',
     template: '%s | PUNTOCLICK',
   },
+  icons: {
+    icon: '/logo.png',
+  },
   description:
     'PuntoClic conecta jóvenes talentos con empresas que tienen "dolores" reales. Sube tu portafolio vivo y conecta con oportunidades que se alinean con tus habilidades.',
   keywords: ['empleo', 'talento', 'matching', 'portafolio', 'oportunidades', 'puntoclick'],

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 // Fallback demo profile for when no session/DB data is available
 const DEMO_PROFILE = {
   firstName: 'Alejandro',
-  lastName: 'Martínez',
+  lastName: 'Martinez',
   email: 'alejandro@talento.com',
   photoUrl: null as string | null,
   bio: 'Desarrollador Full Stack apasionado por crear soluciones innovadoras en Nicaragua.',
