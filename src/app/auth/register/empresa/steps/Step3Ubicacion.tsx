@@ -86,11 +86,16 @@ export default function Step3Ubicacion({ onNext, onBack }: StepProps) {
                     onChange={(e) => setDepartment(e.target.value)}
                   >
                     <option value="" disabled>Seleccione...</option>
-                    <option value="san_salvador">San Salvador</option>
-                    <option value="la_libertad">La Libertad</option>
-                    <option value="santa_ana">Santa Ana</option>
-                    <option value="sonsonate">Sonsonate</option>
-                    <option value="cuscatlan">Cuscatlán</option>
+                    <option value="managua">Managua</option>
+                    <option value="leon">León</option>
+                    <option value="matagalpa">Matagalpa</option>
+                    <option value="esteli">Estelí</option>
+                    <option value="chinandega">Chinandega</option>
+                    <option value="masaya">Masaya</option>
+                    <option value="granada">Granada</option>
+                    <option value="rivas">Rivas</option>
+                    <option value="carazo">Carazo</option>
+                    <option value="jinotega">Jinotega</option>
                   </select>
                   <span className="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
                 </div>
@@ -105,10 +110,18 @@ export default function Step3Ubicacion({ onNext, onBack }: StepProps) {
                     onChange={(e) => setMunicipality(e.target.value)}
                   >
                     <option value="" disabled>Seleccione...</option>
-                    <option value="ss">San Salvador</option>
-                    <option value="st">Santa Tecla</option>
-                    <option value="am">Antiguo Cuscatlán</option>
-                    <option value="sm">San Marcos</option>
+                    <option value="managua">Managua</option>
+                    <option value="ciudad_sandino">Ciudad Sandino</option>
+                    <option value="tipitapa">Tipitapa</option>
+                    <option value="leon">León</option>
+                    <option value="matagalpa">Matagalpa</option>
+                    <option value="esteli">Estelí</option>
+                    <option value="chinandega">Chinandega</option>
+                    <option value="masaya">Masaya</option>
+                    <option value="granada">Granada</option>
+                    <option value="rivas">Rivas</option>
+                    <option value="jinotepe">Jinotepe</option>
+                    <option value="san_juan_del_sur">San Juan del Sur</option>
                   </select>
                   <span className="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
                 </div>
