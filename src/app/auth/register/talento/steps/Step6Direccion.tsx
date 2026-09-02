@@ -149,7 +149,7 @@ export default function Step6Direccion({ onNext, onBack }: { onNext: () => void,
                 required
                 className="w-full bg-surface-container-lowest border border-outline focus:border-primary text-on-surface rounded-lg px-4 py-4 font-body-md text-body-md outline-none transition-all shadow-sm focus:shadow-[0_0_0_2px_rgba(120,90,0,0.2)] placeholder:text-outline/50" 
                 id="direccion" 
-                placeholder="Ej: Calle 123 # 45 - 67, Apto 801" 
+                placeholder="Ej: Del semáforo del Mercado 2c al norte, casa azul" 
                 type="text"
               />
               <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">

@@ -67,7 +67,7 @@ export default function Step3Ubicacion({ onNext, onBack }: StepProps) {
               <input
                 className="w-full bg-background border border-tertiary rounded-lg px-sm py-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50"
                 id="address"
-                placeholder="Ej: Calle Principal 123, Edificio Centro"
+                placeholder="Ej: Del Hospital Militar 1c al sur, 2c al oeste, Edificio Centro"
                 type="text"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}

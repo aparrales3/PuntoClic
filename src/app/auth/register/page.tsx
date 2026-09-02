@@ -1,12 +1,32 @@
+// =============================================================================
+// PUNTOCLICK — Selección de tipo de usuario para registro
+// Server Component — si el usuario ya tiene sesión, redirige a su dashboard
+// =============================================================================
+
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { getSession } from '@/infrastructure/auth/session';
 
 export const metadata: Metadata = {
   title: 'Elige tu camino - PUNTOCLICK',
-  description: 'Elige cómo quieres unirte al ecosistema PuntoClic para comenzar.',
+  description: 'Únete a PuntoClic Nicaragua: el ecosistema que conecta talento con empresas e instituciones líderes.',
 };
 
-export default function SelectUserTypePage() {
+const DASHBOARD_MAP: Record<string, string> = {
+  talento: '/talento/dashboard',
+  empresa: '/empresa/dashboard',
+  institucion: '/institucion/dashboard',
+  admin: '/admin/dashboard',
+};
+
+export default async function SelectUserTypePage() {
+  // If user is already authenticated, redirect to their dashboard
+  const session = await getSession();
+  if (session) {
+    redirect(DASHBOARD_MAP[session.role] || '/talento/dashboard');
+  }
+
   return (
     <div className="bg-background text-on-background min-h-screen flex flex-col font-body-md">
       {/* TopAppBar */}
@@ -31,7 +51,7 @@ export default function SelectUserTypePage() {
             Selecciona tu Camino
           </h2>
           <p className="font-body-lg text-body-lg text-on-surface-variant">
-            Elige cómo quieres unirte al ecosistema PuntoClic para comenzar.
+            Únete a la plataforma que está transformando el empleo y la educación en Nicaragua.
           </p>
         </div>
 
@@ -48,7 +68,7 @@ export default function SelectUserTypePage() {
               TALENTO
             </h3>
             <p className="font-body-md text-body-md text-on-surface-variant text-center flex-1">
-              Crea tu perfil, demuestra tus habilidades y conecta con empresas e instituciones líderes que buscan tu talento.
+              Crea tu perfil profesional, destaca tus habilidades y conecta con empresas nicaragüenses e internacionales que buscan tu talento.
             </p>
             <div className="mt-md px-md py-sm bg-surface rounded-full border border-outline-variant text-on-surface font-label-md text-label-md group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-colors duration-300">
               Unirme como Talento
@@ -67,7 +87,7 @@ export default function SelectUserTypePage() {
               EMPRESA
             </h3>
             <p className="font-body-md text-body-md text-on-surface-variant text-center flex-1">
-              Descubre profesionales verificados, gestiona tus procesos de atracción y haz crecer tu organización con talento de alto nivel.
+              Accede al mejor talento tech de Nicaragua, publica vacantes y gestiona tus procesos de atracción con afinidad inteligente.
             </p>
             <div className="mt-md px-md py-sm bg-surface rounded-full border border-outline-variant text-on-surface font-label-md text-label-md group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-colors duration-300">
               Unirme como Empresa
@@ -86,7 +106,7 @@ export default function SelectUserTypePage() {
               INSTITUCIÓN
             </h3>
             <p className="font-body-md text-body-md text-on-surface-variant text-center flex-1">
-              Alíate con el ecosistema para orientar, validar habilidades e impulsar conexiones entre el talento y la industria.
+              Universidades, institutos técnicos y entidades del Estado: alíate al ecosistema y conecta a tus egresados con la industria.
             </p>
             <div className="mt-md px-md py-sm bg-surface rounded-full border border-outline-variant text-on-surface font-label-md text-label-md group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-colors duration-300">
               Unirme como Institución
@@ -108,4 +128,3 @@ export default function SelectUserTypePage() {
     </div>
   );
 }
-

@@ -69,7 +69,16 @@ export async function sendWelcomeEmail(
     institucion: 'Institución Educativa',
   };
 
-  const subject = `¡Bienvenido a PUNTOCLICK, ${name}!`;
+  const dashboardRoutes = {
+    talento: '/talento/dashboard',
+    empresa: '/empresa/dashboard',
+    institucion: '/institucion/dashboard',
+  };
+
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+  const dashboardUrl = `${appUrl}${dashboardRoutes[role]}`;
+
+  const subject = `¡Bienvenido/a a PUNTOCLICK, ${name}!`;
 
   const html = `
     <!DOCTYPE html>
@@ -95,14 +104,14 @@ export async function sendWelcomeEmail(
         </div>
         <div class="content">
           <h2>¡Hola, ${name}!</h2>
-          <p>Te damos la más cordial bienvenida a <strong>PUNTOCLICK Nicaragua</strong>, el ecosistema digital donde conectamos el mejor talento con empresas líderes e instituciones académicas.</p>
-          <p>Tu cuenta ha sido configurada con éxito. Ya puedes ingresar a tu panel de control para explorar oportunidades, configurar tu perfil y activar tu red de conexiones.</p>
-          <a href="${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/auth/login" class="cta-button">Acceder a mi Cuenta</a>
-          <p>Si tienes alguna consulta, nuestro equipo de soporte está siempre disponible para ayudarte.</p>
+          <p>Te damos la más cordial bienvenida a <strong>PUNTOCLICK Nicaragua</strong>, el ecosistema digital donde conectamos el mejor talento con empresas líderes e instituciones educativas.</p>
+          <p>Tu cuenta ha sido configurada con éxito. Ya podés ingresar a tu panel de control para explorar oportunidades, completar tu perfil y activar tu red de conexiones.</p>
+          <a href="${dashboardUrl}" class="cta-button">Ir a mi Panel de Control →</a>
+          <p>Si tenés alguna consulta, nuestro equipo de soporte está siempre disponible para ayudarte.</p>
         </div>
         <div class="footer">
           <p>© 2026 PUNTOCLICK Nicaragua. Todos los derechos reservados.</p>
-          <p>Managua, Nicaragua • Conectando el futuro profesional</p>
+          <p>Managua, Nicaragua • Conectando el futuro profesional del país</p>
         </div>
       </div>
     </body>
