@@ -9,10 +9,10 @@ export const NEON_AUTH_CONFIG = {
   baseUrl:
     process.env.NEXT_PUBLIC_NEON_AUTH_URL ||
     process.env.NEON_AUTH_BASE_URL ||
-    'https://ep-odd-haze-axvf0t5j.neonauth.c-4.us-east-2.aws.neon.tech/neondb/auth',
+    'https://ep-misty-union-ax8la5ah.neonauth.c-4.us-east-2.aws.neon.tech/neondb/auth',
   jwksUrl:
     process.env.NEON_AUTH_JWKS_URL ||
-    'https://ep-odd-haze-axvf0t5j.neonauth.c-4.us-east-2.aws.neon.tech/neondb/auth/.well-known/jwks.json',
+    'https://ep-misty-union-ax8la5ah.neonauth.c-4.us-east-2.aws.neon.tech/neondb/auth/.well-known/jwks.json',
   projectName: 'PuntoClic',
 };
 

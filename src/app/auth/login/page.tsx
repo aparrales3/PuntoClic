@@ -1,8 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const DEMO_ACCOUNTS = [
   { role: 'talento', email: 'alejandro@talento.com', password: 'Talento1@', label: 'Talento', icon: 'person' },
@@ -18,14 +18,43 @@ const DASHBOARD_MAP: Record<string, string> = {
   admin: '/admin/dashboard',
 };
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const fromParam = searchParams.get('from');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [activeRole, setActiveRole] = useState<string>('talento');
   const [loading, setLoading] = useState(false);
+  const [checkingSession, setCheckingSession] = useState(true);
   const [error, setError] = useState('');
+
+  // If already logged in, redirect away from login page immediately
+  useEffect(() => {
+    async function checkCurrentSession() {
+      try {
+        const res = await fetch('/api/auth/me');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.authenticated && data.user) {
+            const destination =
+              fromParam && fromParam.startsWith('/') && !fromParam.startsWith('/auth/login')
+                ? fromParam
+                : DASHBOARD_MAP[data.user.role] || '/talento/dashboard';
+            router.replace(destination);
+            return;
+          }
+        }
+      } catch (err) {
+        console.debug('[Session check]:', err);
+      } finally {
+        setCheckingSession(false);
+      }
+    }
+    checkCurrentSession();
+  }, [router, fromParam]);
 
   const handleDemoSelect = (role: string) => {
     const demo = DEMO_ACCOUNTS.find((d) => d.role === role);
@@ -42,59 +71,82 @@ export default function LoginPage() {
     setLoading(true);
     setError('');
 
+    const cleanEmail = email.trim().toLowerCase();
+
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: cleanEmail, password }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        // If login fails (user not in DB yet), fall back to demo routing
-        if (res.status === 401 || res.status === 404) {
-          const demo = DEMO_ACCOUNTS.find((d) => d.email === email);
-          if (demo) {
-            router.push(DASHBOARD_MAP[demo.role] || '/talento/dashboard');
-            return;
-          }
-          setError(data.error || 'Credenciales incorrectas.');
-        } else {
-          setError(data.error || 'Error al iniciar sesión.');
-        }
+        setError(data.error || 'Credenciales incorrectas. Verifica tu correo y contraseña.');
+        setLoading(false);
         return;
       }
 
-      router.push(data.redirectTo || DASHBOARD_MAP[data.role] || '/talento/dashboard');
+      // Successful login redirect
+      const destination =
+        fromParam && fromParam.startsWith('/') && !fromParam.startsWith('/auth/login')
+          ? fromParam
+          : data.redirectTo || DASHBOARD_MAP[data.role] || '/talento/dashboard';
+
+      router.replace(destination);
     } catch {
-      setError('Error de conexión. Intenta de nuevo.');
-    } finally {
+      setError('Error de conexión con el servidor. Intenta de nuevo.');
       setLoading(false);
     }
   };
 
+  if (checkingSession) {
+    return (
+      <div className="bg-background min-h-screen flex flex-col items-center justify-center font-body-md text-on-background">
+        <div className="flex flex-col items-center gap-3">
+          <span className="material-symbols-outlined animate-spin text-primary text-4xl">progress_activity</span>
+          <p className="text-on-surface-variant font-medium text-sm">Verificando sesión...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const neonAuthUrl =
+    process.env.NEXT_PUBLIC_NEON_AUTH_URL ||
+    'https://ep-misty-union-ax8la5ah.neonauth.c-4.us-east-2.aws.neon.tech/neondb/auth';
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+
   return (
     <div className="bg-background min-h-screen flex flex-col font-body-md text-on-background">
-      {/* TopAppBar (Transactional - Minimal Header) */}
+      {/* Header */}
       <header className="flex justify-between items-center w-full px-margin-mobile py-sm bg-background border-b border-surface-variant/30">
         <Link
           href="/"
           className="flex items-center justify-center p-2 text-primary hover:opacity-80 transition-opacity active:scale-95 duration-100 rounded-full hover:bg-surface-container"
-          aria-label="Volver a inicio"
+          aria-label="Volver al inicio"
         >
           <span className="material-symbols-outlined">arrow_back</span>
         </Link>
-        <div className="font-headline-md text-headline-md-mobile md:text-headline-md text-primary font-bold uppercase tracking-wider">
-          PUNTOCLICK
-        </div>
-        <Link
-          href="/auth/login-conectado"
-          className="text-label-sm font-semibold text-primary hover:underline px-2 py-1 bg-surface-container rounded-lg"
-          title="Ver vista conectada alternativa"
-        >
-          Modo Conectado
+        <Link href="/" className="flex items-center gap-2">
+          <span
+            className="material-symbols-outlined text-primary text-2xl"
+            style={{ fontVariationSettings: "'FILL' 1" }}
+          >
+            hub
+          </span>
+          <span className="font-headline-md text-headline-md-mobile md:text-headline-md text-primary font-bold uppercase tracking-wider">
+            PUNTOCLICK
+          </span>
         </Link>
+        <div className="flex items-center">
+          <Link
+            href="/auth/register"
+            className="text-label-sm font-semibold text-primary hover:bg-primary-container/20 px-3 py-1.5 rounded-lg transition-colors"
+          >
+            Crear cuenta
+          </Link>
+        </div>
       </header>
 
       <main className="flex-grow flex items-center justify-center p-margin-mobile py-8">
@@ -104,15 +156,18 @@ export default function LoginPage() {
               Bienvenido de vuelta
             </h1>
             <p className="font-body-md text-body-md text-on-surface-variant">
-              Inicia sesión en tu cuenta PUNTOCLICK
+              Inicia sesión en tu cuenta de PuntoClic
             </p>
           </div>
 
-          {/* Demo Account Switcher */}
+          {/* Quick Demo Account Selector */}
           <div className="mb-md">
-            <p className="font-label-sm text-label-sm text-on-surface-variant text-center mb-sm">
-              Cuentas de prueba
-            </p>
+            <div className="flex items-center justify-between mb-xs">
+              <span className="font-label-sm text-label-sm text-on-surface-variant font-medium">
+                Acceso rápido (Cuentas de prueba)
+              </span>
+              <span className="text-[11px] text-primary font-medium">Autocompletar</span>
+            </div>
             <div className="grid grid-cols-4 gap-xs">
               {DEMO_ACCOUNTS.map((demo) => (
                 <button
@@ -124,25 +179,28 @@ export default function LoginPage() {
                       ? 'bg-primary-container border-primary text-on-primary-container shadow-sm'
                       : 'bg-surface-container-lowest border-surface-container-high text-on-surface-variant hover:bg-surface-container'
                   }`}
+                  title={`Seleccionar cuenta de ${demo.label}`}
                 >
                   <span className="material-symbols-outlined text-[20px]">{demo.icon}</span>
-                  <span className="font-label-sm text-label-sm text-[11px] leading-tight">{demo.label}</span>
+                  <span className="font-label-sm text-label-sm text-[11px] leading-tight font-semibold">
+                    {demo.label}
+                  </span>
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Error message */}
+          {/* Error Alert */}
           {error && (
-            <div className="mb-md p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm flex items-center gap-2">
-              <span className="material-symbols-outlined text-base">error</span>
-              <span>{error}</span>
+            <div className="mb-md p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm flex items-center gap-2 animate-shake">
+              <span className="material-symbols-outlined text-base text-red-600">error</span>
+              <span className="font-medium">{error}</span>
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-md">
             <div className="flex flex-col gap-xs">
-              <label className="font-label-md text-label-md text-on-surface" htmlFor="email">
+              <label className="font-label-md text-label-md text-on-surface font-medium" htmlFor="email">
                 Correo electrónico
               </label>
               <div className="relative">
@@ -158,13 +216,16 @@ export default function LoginPage() {
                   required
                   type="email"
                   value={email}
-                  onChange={(e) => { setEmail(e.target.value); setError(''); }}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setError('');
+                  }}
                 />
               </div>
             </div>
 
             <div className="flex flex-col gap-xs">
-              <label className="font-label-md text-label-md text-on-surface" htmlFor="password">
+              <label className="font-label-md text-label-md text-on-surface font-medium" htmlFor="password">
                 Contraseña
               </label>
               <div className="relative">
@@ -180,12 +241,16 @@ export default function LoginPage() {
                   required
                   type={showPassword ? 'text' : 'password'}
                   value={password}
-                  onChange={(e) => { setPassword(e.target.value); setError(''); }}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setError('');
+                  }}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors"
+                  aria-label={showPassword ? 'Ocultar contraseña' : 'Ver contraseña'}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-primary transition-colors p-1 rounded-full cursor-pointer"
                 >
                   <span className="material-symbols-outlined text-[20px]">
                     {showPassword ? 'visibility' : 'visibility_off'}
@@ -199,13 +264,13 @@ export default function LoginPage() {
                 className="font-label-md text-label-md text-primary hover:text-primary-fixed-dim transition-colors"
                 href="/auth/recuperar-contrasena"
               >
-                ¿Olvidé mi contraseña?
+                ¿Olvidaste tu contraseña?
               </Link>
             </div>
 
             <button
               disabled={loading}
-              className="w-full bg-primary text-on-primary rounded-lg py-3 font-label-md text-label-md shadow-[0_4px_12px_rgba(120,90,0,0.2)] hover:bg-primary-fixed hover:text-on-primary-fixed transition-all active:scale-[0.98] font-bold cursor-pointer flex items-center justify-center gap-2 disabled:opacity-60"
+              className="w-full bg-primary text-on-primary rounded-lg py-3 font-label-md text-label-md shadow-[0_4px_12px_rgba(120,90,0,0.2)] hover:bg-primary-fixed hover:text-on-primary-fixed transition-all active:scale-[0.98] font-bold cursor-pointer flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
               type="submit"
             >
               {loading ? (
@@ -222,12 +287,11 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* Neon Auth Social Section */}
+          {/* Social Auth Section */}
           <div className="mt-lg">
-            {/* Neon Auth Badge */}
             <div className="mb-md flex items-center justify-center gap-1.5 py-1.5 px-3 bg-secondary-container/60 text-on-secondary-container rounded-full text-[11px] font-semibold mx-auto w-fit">
               <span className="material-symbols-outlined text-[14px]">encrypted</span>
-              <span>Protegido por <strong>Neon Auth</strong> · PuntoClic</span>
+              <span>Autenticación segura · PuntoClic</span>
             </div>
 
             <div className="relative flex items-center mb-md">
@@ -240,7 +304,7 @@ export default function LoginPage() {
 
             <div className="flex flex-col space-y-sm">
               <a
-                href={`${process.env.NEXT_PUBLIC_NEON_AUTH_URL || 'https://ep-odd-haze-axvf0t5j.neonauth.c-4.us-east-2.aws.neon.tech/neondb/auth'}/sign-in/social?provider=google&callbackURL=${encodeURIComponent((process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000') + '/talento/dashboard')}`}
+                href={`${neonAuthUrl}/sign-in/social?provider=google&callbackURL=${encodeURIComponent(appUrl + '/talento/dashboard')}`}
                 className="w-full flex items-center justify-center bg-surface-container-lowest border border-outline-variant rounded-lg py-2.5 px-4 font-label-md text-label-md text-on-surface hover:bg-surface-container-highest transition-colors shadow-sm cursor-pointer gap-2"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24">
@@ -252,7 +316,7 @@ export default function LoginPage() {
                 Continuar con Google
               </a>
               <a
-                href={`${process.env.NEXT_PUBLIC_NEON_AUTH_URL || 'https://ep-odd-haze-axvf0t5j.neonauth.c-4.us-east-2.aws.neon.tech/neondb/auth'}/sign-in/social?provider=github&callbackURL=${encodeURIComponent((process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000') + '/talento/dashboard')}`}
+                href={`${neonAuthUrl}/sign-in/social?provider=github&callbackURL=${encodeURIComponent(appUrl + '/talento/dashboard')}`}
                 className="w-full flex items-center justify-center bg-surface-container-lowest border border-outline-variant rounded-lg py-2.5 px-4 font-label-md text-label-md text-on-surface hover:bg-surface-container-highest transition-colors shadow-sm cursor-pointer gap-2"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
@@ -263,6 +327,7 @@ export default function LoginPage() {
             </div>
           </div>
 
+          {/* Footer */}
           <div className="mt-xl text-center">
             <p className="font-body-md text-body-md text-on-surface-variant">
               ¿No tienes una cuenta?{' '}
@@ -286,5 +351,19 @@ export default function LoginPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="bg-background min-h-screen flex items-center justify-center">
+          <span className="material-symbols-outlined animate-spin text-primary text-4xl">progress_activity</span>
+        </div>
+      }
+    >
+      <LoginForm />
+    </Suspense>
   );
 }

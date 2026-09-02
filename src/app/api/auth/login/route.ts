@@ -6,7 +6,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/infrastructure/db/client';
-import { users, talentProfiles, companyProfiles } from '@/infrastructure/db/schema';
+import { users, talentProfiles, companyProfiles, institutionProfiles } from '@/infrastructure/db/schema';
 import { eq } from 'drizzle-orm';
 import bcrypt from 'bcryptjs';
 import { createSession, setSessionCookie } from '@/infrastructure/auth/session';
@@ -76,6 +76,18 @@ export async function POST(req: NextRequest) {
         name = profile.companyName || name;
         photoUrl = profile.logoUrl || undefined;
       }
+    } else if (user.role === 'institucion') {
+      const [profile] = await db
+        .select({ institutionName: institutionProfiles.institutionName, logoUrl: institutionProfiles.logoUrl })
+        .from(institutionProfiles)
+        .where(eq(institutionProfiles.userId, user.id))
+        .limit(1);
+      if (profile) {
+        name = profile.institutionName || name;
+        photoUrl = profile.logoUrl || undefined;
+      }
+    } else if (user.role === 'admin') {
+      name = 'Administrador Central';
     }
 
     // Create session
