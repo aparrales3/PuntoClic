@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { ProfileAvatar } from '@/components/design-system';
 
 export default function EmpresaDashboardPage() {
   const [activeTab, setActiveTab] = useState<'acciones' | 'rendimiento'>('acciones');
@@ -52,10 +53,10 @@ export default function EmpresaDashboardPage() {
 
           <Link
             href="/match-talento"
-            className="bg-primary-container text-on-primary-container font-label-md text-label-md px-4 py-2.5 rounded-xl hover:opacity-90 active:scale-95 transition-all shadow-xs flex items-center gap-xs font-bold"
+            className="bg-primary text-on-primary font-label-md text-label-md px-4 py-2.5 rounded-xl hover:opacity-90 active:scale-95 transition-all shadow-xs flex items-center gap-xs font-bold"
           >
-            <span className="material-symbols-outlined text-[18px]">add</span>
-            Nueva Vacante
+            <span className="material-symbols-outlined text-[18px]">person_search</span>
+            Buscar Talentos
           </Link>
         </div>
       </section>
@@ -80,15 +81,15 @@ export default function EmpresaDashboardPage() {
                   className="bg-surface text-primary font-label-md text-label-md py-sm px-md rounded-xl shadow-xs flex items-center justify-center gap-xs hover:bg-surface-container-lowest transition-colors active:scale-95 duration-150 font-bold"
                   href="/match-talento"
                 >
-                  <span className="material-symbols-outlined text-[20px]">add_circle</span>
-                  Publicar Vacante
+                  <span className="material-symbols-outlined text-[20px]">person_search</span>
+                  Buscar Talentos
                 </Link>
                 <Link
                   className="bg-transparent border-2 border-on-primary-container text-on-primary-container font-label-md text-label-md py-sm px-md rounded-xl flex items-center justify-center gap-xs hover:bg-white/10 transition-colors active:scale-95 duration-150 font-bold"
                   href="/match-center"
                 >
-                  <span className="material-symbols-outlined text-[20px]">search</span>
-                  Buscar Talento
+                  <span className="material-symbols-outlined text-[20px]">handshake</span>
+                  Mis Matches
                 </Link>
               </div>
             </div>
@@ -165,53 +166,89 @@ export default function EmpresaDashboardPage() {
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-md">
-              {/* Talent Card 1 */}
-              <div className="bg-surface-container-lowest rounded-2xl p-md shadow-ambient border border-surface-variant flex flex-col items-center text-center hover:shadow-ambient-md transition-shadow">
-                <div className="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-sm font-bold text-xl border-2 border-secondary-container">
-                  AM
-                </div>
-                <h4 className="font-label-md text-label-md text-on-background font-bold">
-                  Ana Martínez
+              {/* Talent Card 1: Alejandro Martínez */}
+              <Link
+                href="/match-talento"
+                className="bg-surface-container-lowest rounded-2xl p-md shadow-ambient border border-surface-variant flex flex-col items-center text-center hover:shadow-ambient-md hover:border-primary/40 transition-all group"
+              >
+                <ProfileAvatar
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face&auto=format"
+                  name="Alejandro Martínez"
+                  type="talent"
+                  size="lg"
+                  verified={true}
+                  className="mb-sm"
+                />
+                <h4 className="font-label-md text-label-md text-on-background font-bold group-hover:text-primary transition-colors">
+                  Alejandro Martínez
                 </h4>
-                <p className="font-label-sm text-label-sm text-on-surface-variant mb-sm">
-                  UX/UI Designer • Figma, Tailwind
+                <p className="font-label-sm text-label-sm text-on-surface-variant mb-xs">
+                  Full Stack Semi-Senior • React, Node.js
                 </p>
-                <div className="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-3 py-1 rounded-full w-full font-bold">
+                <p className="text-[11px] text-on-surface-variant/80 mb-sm">
+                  Managua, Nicaragua
+                </p>
+                <div className="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-3 py-1 rounded-full w-full font-bold flex items-center justify-center gap-1">
+                  <span className="material-symbols-outlined text-xs">auto_awesome</span>
                   95% Match
                 </div>
-              </div>
+              </Link>
 
-              {/* Talent Card 2 */}
-              <div className="bg-surface-container-lowest rounded-2xl p-md shadow-ambient border border-surface-variant flex flex-col items-center text-center hover:shadow-ambient-md transition-shadow">
-                <div className="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-sm font-bold text-xl border-2 border-primary-container">
-                  CS
-                </div>
-                <h4 className="font-label-md text-label-md text-on-background font-bold">
-                  Carlos Silva
+              {/* Talent Card 2: María José Silva */}
+              <Link
+                href="/match-talento"
+                className="bg-surface-container-lowest rounded-2xl p-md shadow-ambient border border-surface-variant flex flex-col items-center text-center hover:shadow-ambient-md hover:border-primary/40 transition-all group"
+              >
+                <ProfileAvatar
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&crop=face&auto=format"
+                  name="María José Silva"
+                  type="talent"
+                  size="lg"
+                  verified={true}
+                  className="mb-sm"
+                />
+                <h4 className="font-label-md text-label-md text-on-background font-bold group-hover:text-primary transition-colors">
+                  María José Silva
                 </h4>
-                <p className="font-label-sm text-label-sm text-on-surface-variant mb-sm">
-                  Desarrollador Frontend • React, TS
+                <p className="font-label-sm text-label-sm text-on-surface-variant mb-xs">
+                  Product Designer Lead • Figma, UX/UI
                 </p>
-                <div className="bg-primary-container text-on-primary-container font-label-sm text-label-sm px-3 py-1 rounded-full w-full font-bold">
+                <p className="text-[11px] text-on-surface-variant/80 mb-sm">
+                  León, Nicaragua
+                </p>
+                <div className="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-3 py-1 rounded-full w-full font-bold flex items-center justify-center gap-1">
+                  <span className="material-symbols-outlined text-xs">auto_awesome</span>
+                  92% Match
+                </div>
+              </Link>
+
+              {/* Talent Card 3: Valeria Chamorro (Generic Template Avatar) */}
+              <Link
+                href="/match-talento"
+                className="bg-surface-container-lowest rounded-2xl p-md shadow-ambient border border-surface-variant flex flex-col items-center text-center hover:shadow-ambient-md hover:border-primary/40 transition-all group"
+              >
+                <ProfileAvatar
+                  src={null}
+                  name="Valeria Chamorro"
+                  type="talent"
+                  size="lg"
+                  verified={true}
+                  className="mb-sm"
+                />
+                <h4 className="font-label-md text-label-md text-on-background font-bold group-hover:text-primary transition-colors">
+                  Valeria Chamorro
+                </h4>
+                <p className="font-label-sm text-label-sm text-on-surface-variant mb-xs">
+                  Data Scientist & BI • Python, ML, SQL
+                </p>
+                <p className="text-[11px] text-on-surface-variant/80 mb-sm">
+                  Managua, Nicaragua
+                </p>
+                <div className="bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm px-3 py-1 rounded-full w-full font-bold flex items-center justify-center gap-1">
+                  <span className="material-symbols-outlined text-xs">auto_awesome</span>
                   91% Match
                 </div>
-              </div>
-
-              {/* Talent Card 3 */}
-              <div className="bg-surface-container-lowest rounded-2xl p-md shadow-ambient border border-surface-variant flex flex-col items-center text-center hover:shadow-ambient-md transition-shadow">
-                <div className="w-16 h-16 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center mb-sm font-bold text-xl border-2 border-tertiary-container">
-                  LG
-                </div>
-                <h4 className="font-label-md text-label-md text-on-background font-bold">
-                  Lucía Gómez
-                </h4>
-                <p className="font-label-sm text-label-sm text-on-surface-variant mb-sm">
-                  QA Automation • Cypress, Playwright
-                </p>
-                <div className="bg-tertiary-container text-on-tertiary-container font-label-sm text-label-sm px-3 py-1 rounded-full w-full font-bold">
-                  88% Match
-                </div>
-              </div>
+              </Link>
             </div>
           </section>
         </div>

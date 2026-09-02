@@ -91,6 +91,50 @@ async function seed() {
     })
     .returning();
 
+  // Talento 5: Gabriel Morales (Flutter / Móvil)
+  const [uGabriel] = await db
+    .insert(schema.users)
+    .values({
+      email: 'gabriel.morales@talento.com',
+      passwordHash: hashTalento,
+      role: 'talento',
+      status: 'active',
+    })
+    .returning();
+
+  // Talento 6: Valeria Chamorro (Data Science - Sin foto para probar plantilla genérica)
+  const [uValeria] = await db
+    .insert(schema.users)
+    .values({
+      email: 'valeria.chamorro@talento.com',
+      passwordHash: hashTalento,
+      role: 'talento',
+      status: 'active',
+    })
+    .returning();
+
+  // Talento 7: Kevin Toruño (QA Automation - Sin foto para probar plantilla genérica)
+  const [uKevin] = await db
+    .insert(schema.users)
+    .values({
+      email: 'kevin.toruno@talento.com',
+      passwordHash: hashTalento,
+      role: 'talento',
+      status: 'active',
+    })
+    .returning();
+
+  // Talento 8: Lucía Gutiérrez (Diseño & Branding)
+  const [uLucia] = await db
+    .insert(schema.users)
+    .values({
+      email: 'lucia.gutierrez@talento.com',
+      passwordHash: hashTalento,
+      role: 'talento',
+      status: 'active',
+    })
+    .returning();
+
   // Empresa 1: TechHive Nicaragua
   const [uTechHive] = await db
     .insert(schema.users)
@@ -113,11 +157,22 @@ async function seed() {
     })
     .returning();
 
-  // Empresa 3: FinTech Nica
+  // Empresa 3: FinTech Nica (Sin logo para probar plantilla genérica de empresa)
   const [uFinTech] = await db
     .insert(schema.users)
     .values({
       email: 'fintech@empresa.com',
+      passwordHash: hashEmpresa,
+      role: 'empresa',
+      status: 'active',
+    })
+    .returning();
+
+  // Empresa 4: NicaCloud Solutions
+  const [uNicaCloud] = await db
+    .insert(schema.users)
+    .values({
+      email: 'nicacloud@empresa.com',
       passwordHash: hashEmpresa,
       role: 'empresa',
       status: 'active',
@@ -140,6 +195,17 @@ async function seed() {
     .insert(schema.users)
     .values({
       email: 'contacto@inatec.edu.ni',
+      passwordHash: hashInstitucion,
+      role: 'institucion',
+      status: 'active',
+    })
+    .returning();
+
+  // Institucion 3: Universidad Americana (UAM - Sin logo para probar plantilla genérica de institución)
+  const [uUAM] = await db
+    .insert(schema.users)
+    .values({
+      email: 'innovacion@uam.edu.ni',
       passwordHash: hashInstitucion,
       role: 'institucion',
       status: 'active',
@@ -238,6 +304,86 @@ async function seed() {
     })
     .returning();
 
+  // Talento 5: Gabriel Morales (Móvil Flutter)
+  const [pGabriel] = await db
+    .insert(schema.talentProfiles)
+    .values({
+      userId: uGabriel.id,
+      firstName: 'Gabriel',
+      lastName: 'Morales',
+      bio: 'Ingeniero de Software enfocado en desarrollo de aplicaciones móviles multiplataforma con Flutter, Dart e integración de APIs nativas para iOS y Android.',
+      photoUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face&auto=format',
+      skills: ['Flutter', 'Dart', 'Mobile Apps', 'Firebase', 'REST APIs', 'State Management', 'iOS', 'Android'],
+      completionPct: 95,
+      location: 'León, Nicaragua',
+      contractTypes: ['tiempo_completo', 'freelance'],
+      workModes: ['remoto', 'hibrido'],
+      currentlyWorking: true,
+      currentJobTitle: 'Desarrollador Móvil Flutter Senior',
+      educationLevel: 'Ingeniería en Telemática (UNAN-León)',
+    })
+    .returning();
+
+  // Talento 6: Valeria Chamorro (Data Science - Sin foto para plantilla genérica)
+  const [pValeria] = await db
+    .insert(schema.talentProfiles)
+    .values({
+      userId: uValeria.id,
+      firstName: 'Valeria',
+      lastName: 'Chamorro',
+      bio: 'Científica de Datos y analista cuantitativa con experiencia en modelos predictivos, visualización de datos, SQL avanzado y Python.',
+      photoUrl: null, // Prueba de plantilla genérica de avatar
+      skills: ['Python', 'Data Science', 'Machine Learning', 'Pandas', 'PostgreSQL', 'Power BI', 'SQL'],
+      completionPct: 88,
+      location: 'Managua, Nicaragua',
+      contractTypes: ['tiempo_completo', 'medio_tiempo'],
+      workModes: ['remoto'],
+      currentlyWorking: false,
+      currentJobTitle: 'Científica de Datos & Analista BI',
+      educationLevel: 'Licenciatura en Matemática Aplicada (UCA)',
+    })
+    .returning();
+
+  // Talento 7: Kevin Toruño (QA Automation - Sin foto para plantilla genérica)
+  const [pKevin] = await db
+    .insert(schema.talentProfiles)
+    .values({
+      userId: uKevin.id,
+      firstName: 'Kevin',
+      lastName: 'Toruño',
+      bio: 'Ingeniero de Calidad de Software con especialidad en automatización de pruebas end-to-end, testing de APIs y control de regresión continua.',
+      photoUrl: null, // Prueba de plantilla genérica de avatar
+      skills: ['QA Automation', 'Cypress', 'Playwright', 'Jest', 'Postman', 'CI/CD', 'TypeScript'],
+      completionPct: 85,
+      location: 'Matagalpa, Nicaragua',
+      contractTypes: ['tiempo_completo', 'freelance'],
+      workModes: ['remoto', 'hibrido'],
+      currentlyWorking: true,
+      currentJobTitle: 'QA Automation Engineer',
+      educationLevel: 'Ingeniería en Sistemas (FAREM-Matagalpa)',
+    })
+    .returning();
+
+  // Talento 8: Lucía Gutiérrez (Diseño & Branding)
+  const [pLucia] = await db
+    .insert(schema.talentProfiles)
+    .values({
+      userId: uLucia.id,
+      firstName: 'Lucía',
+      lastName: 'Gutiérrez',
+      bio: 'Diseñadora Visual y estratega de marca digital. Especialista en identidad corporativa, ilustración vectorial y diseño web centrado en conversión.',
+      photoUrl: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop&crop=face&auto=format',
+      skills: ['UI/UX', 'Figma', 'Branding', 'Ilustración', 'Adobe Creative Suite', 'HTML/CSS'],
+      completionPct: 90,
+      location: 'Masaya, Nicaragua',
+      contractTypes: ['freelance', 'tiempo_completo'],
+      workModes: ['remoto', 'hibrido'],
+      currentlyWorking: false,
+      currentJobTitle: 'Brand & Visual Designer',
+      educationLevel: 'Licenciatura en Diseño y Comunicación Visual (UdeM)',
+    })
+    .returning();
+
   console.log('✓ Talent profiles created.');
 
   // 4. Insert Company Profiles
@@ -253,7 +399,7 @@ async function seed() {
       description: 'Empresa líder en desarrollo de software a medida, aplicaciones web progresivas y transformación digital para empresas de Centroamérica.',
       logoUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=300&h=300&fit=crop&auto=format',
       website: 'https://techhive.com.ni',
-      painPoints: ['Escasez de desarrolladores React/TypeScript senior', 'Necesidad de Diseñadores UI/UX con experiencia en Design Systems'],
+      painPoints: ['Escasez de desarrolladores React/TypeScript senior', 'Necesidad de Diseñadores UI/UX con experiencia en Design Systems', 'Ingenieros DevOps para migración a Kubernetes'],
       location: 'Managua, Nicaragua',
       employeeCount: '50-100',
       verified: true,
@@ -270,7 +416,7 @@ async function seed() {
       description: 'Pioneros en agricultura de precisión, sensores IoT para monitoreo de cultivos de café y tabaco, y automatización hídrica.',
       logoUrl: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=300&h=300&fit=crop&auto=format',
       website: 'https://agrotech.com.ni',
-      painPoints: ['Ingenieros IoT con experiencia en telemetría', 'Desarrolladores Mobile para apps de campo offline-first'],
+      painPoints: ['Ingenieros IoT con experiencia en telemetría', 'Desarrolladores Mobile para apps de campo offline-first', 'Científicos de Datos para análisis climatológico'],
       location: 'Matagalpa, Nicaragua',
       employeeCount: '20-50',
       verified: true,
@@ -285,11 +431,28 @@ async function seed() {
       legalName: 'Servicios Financieros Digitales de Nicaragua S.A.',
       sector: 'Fintech & Medios de Pago',
       description: 'Plataforma de pagos digitales, pasarelas de cobro e inclusión financiera en Nicaragua.',
-      logoUrl: 'https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=300&h=300&fit=crop&auto=format',
+      logoUrl: null, // Sin logo para probar plantilla genérica de empresa
       website: 'https://fintechnica.ni',
       painPoints: ['Especialistas en ciberseguridad financiera', 'Ingenieros Backend con Node.js y PostgreSQL de alta concurrencia'],
       location: 'Managua, Nicaragua',
       employeeCount: '30-60',
+      verified: true,
+    })
+    .returning();
+
+  const [cNicaCloud] = await db
+    .insert(schema.companyProfiles)
+    .values({
+      userId: uNicaCloud.id,
+      companyName: 'NicaCloud Solutions',
+      legalName: 'Soluciones Cloud de Nicaragua S.A.',
+      sector: 'Infraestructura Cloud & DevOps',
+      description: 'Consultoría e implementación de soluciones en la nube, arquitecturas serverless y modernización de infraestructuras críticas.',
+      logoUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=300&h=300&fit=crop&auto=format',
+      website: 'https://nicacloud.com.ni',
+      painPoints: ['Ingenieros DevOps y Cloud con AWS/Docker', 'Automatización de pipelines CI/CD'],
+      location: 'Managua, Nicaragua',
+      employeeCount: '15-30',
       verified: true,
     })
     .returning();
@@ -322,6 +485,19 @@ async function seed() {
       logoUrl: 'https://images.unsplash.com/photo-1562774053-701939374585?w=300&h=300&fit=crop&auto=format',
       website: 'https://inatec.edu.ni',
       location: 'Managua, Nicaragua (Cobertura Nacional)',
+      verified: true,
+    });
+
+  await db
+    .insert(schema.institutionProfiles)
+    .values({
+      userId: uUAM.id,
+      institutionName: 'Universidad Americana (UAM)',
+      type: 'universidad',
+      description: 'Institución líder en innovación académica, emprendimiento y desarrollo de competencias globales en Nicaragua.',
+      logoUrl: null, // Sin logo para probar plantilla genérica de institución
+      website: 'https://uam.edu.ni',
+      location: 'Managua, Nicaragua',
       verified: true,
     });
 
@@ -368,6 +544,25 @@ async function seed() {
     })
     .returning();
 
+  const [opMobile] = await db
+    .insert(schema.opportunities)
+    .values({
+      companyId: cTechHive.id,
+      title: 'Desarrollador Móvil Flutter & iOS/Android',
+      description: 'Construcción y despliegue de aplicaciones móviles nativas y cross-platform con Flutter.',
+      problemStatement: 'Crear la aplicación móvil insignia para servicios fintech en la región.',
+      requiredSkills: ['Flutter', 'Dart', 'Mobile Apps', 'REST APIs'],
+      niceToHaveSkills: ['Firebase', 'iOS', 'Android'],
+      workModes: ['remoto', 'hibrido'],
+      contractTypes: ['tiempo_completo'],
+      location: 'Managua, Nicaragua',
+      salaryMin: 1600,
+      salaryMax: 2400,
+      salaryCurrency: 'USD',
+      status: 'active',
+    })
+    .returning();
+
   const [opIoT] = await db
     .insert(schema.opportunities)
     .values({
@@ -382,6 +577,25 @@ async function seed() {
       location: 'Matagalpa, Nicaragua',
       salaryMin: 1500,
       salaryMax: 2400,
+      salaryCurrency: 'USD',
+      status: 'active',
+    })
+    .returning();
+
+  const [opData] = await db
+    .insert(schema.opportunities)
+    .values({
+      companyId: cAgroTech.id,
+      title: 'Analista de Datos & Machine Learning',
+      description: 'Modelado predictivo de rendimientos agrícolas y análisis de telemetría de suelos.',
+      problemStatement: 'Optimizar fertilización y consumo hídrico mediante modelos de machine learning.',
+      requiredSkills: ['Python', 'Data Science', 'Machine Learning', 'SQL'],
+      niceToHaveSkills: ['Pandas', 'Power BI'],
+      workModes: ['remoto'],
+      contractTypes: ['tiempo_completo'],
+      location: 'Matagalpa, Nicaragua',
+      salaryMin: 1500,
+      salaryMax: 2300,
       salaryCurrency: 'USD',
       status: 'active',
     })
@@ -406,12 +620,31 @@ async function seed() {
     })
     .returning();
 
+  const [opCloud] = await db
+    .insert(schema.opportunities)
+    .values({
+      companyId: cNicaCloud.id,
+      title: 'Cloud Architect & DevOps Specialist',
+      description: 'Diseño e implementación de infraestructuras escalables en AWS con Docker y orquestación con Kubernetes.',
+      problemStatement: 'Migrar clientes bancarios y corporativos a arquitecturas microservicios seguras.',
+      requiredSkills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD'],
+      niceToHaveSkills: ['Python', 'Terraform', 'Linux'],
+      workModes: ['remoto'],
+      contractTypes: ['tiempo_completo'],
+      location: 'Managua, Nicaragua',
+      salaryMin: 2200,
+      salaryMax: 3200,
+      salaryCurrency: 'USD',
+      status: 'active',
+    })
+    .returning();
+
   console.log('✓ Opportunities created.');
 
   // 7. Insert Matches
   console.log('🤝 Inserting match relations...');
 
-  // Match 1: Alejandro <-> TechHive (Frontend Opportunity) -> 95% Match
+  // Match 1: Alejandro <-> TechHive (Frontend) -> 95% Match
   await db.insert(schema.matches).values({
     talentId: pAlejandro.id,
     companyId: cTechHive.id,
@@ -426,7 +659,7 @@ async function seed() {
     },
   });
 
-  // Match 2: María José <-> TechHive (UI/UX Opportunity) -> 92% Match
+  // Match 2: María José <-> TechHive (UI/UX) -> 92% Match
   await db.insert(schema.matches).values({
     talentId: pMaria.id,
     companyId: cTechHive.id,
@@ -441,22 +674,52 @@ async function seed() {
     },
   });
 
-  // Match 3: Carlos <-> AgroTech (IoT & Cloud Opportunity) -> 88% Match
+  // Match 3: Gabriel <-> TechHive (Mobile) -> 94% Match
   await db.insert(schema.matches).values({
-    talentId: pCarlos.id,
-    companyId: cAgroTech.id,
-    opportunityId: opIoT.id,
+    talentId: pGabriel.id,
+    companyId: cTechHive.id,
+    opportunityId: opMobile.id,
     status: 'company_interested',
-    scoreTotal: 88,
+    scoreTotal: 94,
     scoreBreakdown: {
-      skillsScore: 85,
+      skillsScore: 95,
       workModeScore: 90,
-      locationScore: 90,
-      matchedSkills: ['Python', 'Linux', 'Docker'],
+      locationScore: 95,
+      matchedSkills: ['Flutter', 'Dart', 'Mobile Apps', 'REST APIs'],
     },
   });
 
-  // Match 4: Sofía <-> FinTech Nica (Security Opportunity) -> 97% Match
+  // Match 4: Carlos <-> NicaCloud (Cloud/DevOps) -> 96% Match
+  await db.insert(schema.matches).values({
+    talentId: pCarlos.id,
+    companyId: cNicaCloud.id,
+    opportunityId: opCloud.id,
+    status: 'mutual',
+    scoreTotal: 96,
+    scoreBreakdown: {
+      skillsScore: 98,
+      workModeScore: 95,
+      locationScore: 95,
+      matchedSkills: ['AWS', 'Docker', 'Kubernetes', 'CI/CD'],
+    },
+  });
+
+  // Match 5: Valeria <-> AgroTech (Data Science) -> 91% Match
+  await db.insert(schema.matches).values({
+    talentId: pValeria.id,
+    companyId: cAgroTech.id,
+    opportunityId: opData.id,
+    status: 'company_interested',
+    scoreTotal: 91,
+    scoreBreakdown: {
+      skillsScore: 92,
+      workModeScore: 90,
+      locationScore: 90,
+      matchedSkills: ['Python', 'Data Science', 'Machine Learning', 'SQL'],
+    },
+  });
+
+  // Match 6: Sofía <-> FinTech Nica (Security) -> 97% Match
   await db.insert(schema.matches).values({
     talentId: pSofia.id,
     companyId: cFinTech.id,
@@ -477,16 +740,22 @@ async function seed() {
   console.log('🎉 PUNTOCLICK SEED COMPLETED SUCCESSFULLY ON NEON!');
   console.log('======================================================');
   console.log('Test Accounts:');
-  console.log('1. Talento:     alejandro@talento.com     / Talento1@');
-  console.log('2. Talento:     maria.silva@talento.com   / Talento1@');
-  console.log('3. Talento:     carlos.bendana@talento.com / Talento1@');
-  console.log('4. Talento:     sofia.rostran@talento.com  / Talento1@');
-  console.log('5. Empresa:     techhive@empresa.com      / Empresa1@');
-  console.log('6. Empresa:     agrotech@empresa.com      / Empresa1@');
-  console.log('7. Empresa:     fintech@empresa.com       / Empresa1@');
-  console.log('8. Institución: rectoria@nodo.edu         / Nodo2026@');
-  console.log('9. Institución: contacto@inatec.edu.ni    / Nodo2026@');
-  console.log('10. Admin:      admin@puntoclick.com      / Admin2026@');
+  console.log('1.  Talento (Foto):       alejandro@talento.com       / Talento1@');
+  console.log('2.  Talento (Foto):       maria.silva@talento.com     / Talento1@');
+  console.log('3.  Talento (Foto):       carlos.bendana@talento.com  / Talento1@');
+  console.log('4.  Talento (Foto):       sofia.rostran@talento.com   / Talento1@');
+  console.log('5.  Talento (Foto):       gabriel.morales@talento.com / Talento1@');
+  console.log('6.  Talento (Plantilla):  valeria.chamorro@talento.com/ Talento1@');
+  console.log('7.  Talento (Plantilla):  kevin.toruno@talento.com    / Talento1@');
+  console.log('8.  Talento (Foto):       lucia.gutierrez@talento.com / Talento1@');
+  console.log('9.  Empresa (Logo):       techhive@empresa.com        / Empresa1@');
+  console.log('10. Empresa (Logo):       agrotech@empresa.com        / Empresa1@');
+  console.log('11. Empresa (Plantilla):  fintech@empresa.com         / Empresa1@');
+  console.log('12. Empresa (Logo):       nicacloud@empresa.com       / Empresa1@');
+  console.log('13. Institución (Logo):   rectoria@nodo.edu           / Nodo2026@');
+  console.log('14. Institución (Logo):   contacto@inatec.edu.ni      / Nodo2026@');
+  console.log('15. Institución (Plant.): innovacion@uam.edu.ni       / Nodo2026@');
+  console.log('16. Administrador:        admin@puntoclick.com        / Admin2026@');
   console.log('======================================================\n');
 }
 

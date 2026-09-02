@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ProfileAvatar } from '@/components/design-system';
 
 export const metadata: Metadata = {
   title: 'Match Center - PUNTOCLICK',
@@ -34,22 +35,24 @@ export default function MatchCenterPage() {
           <div className="md:col-span-4 bg-surface-container-lowest rounded-2xl shadow-ambient border border-surface-container p-md flex flex-col items-center text-center relative overflow-hidden group hover:shadow-ambient-md transition-all">
             <div className="absolute top-0 left-0 w-full h-20 bg-secondary-container/40 z-0 rounded-t-2xl" />
             <div className="z-10 relative mb-4 mt-4">
-              <div className="w-20 h-20 rounded-2xl bg-secondary-container text-on-secondary-container border-4 border-surface shadow-xs flex items-center justify-center font-bold text-2xl">
-                ET
-              </div>
-              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-emerald-500 rounded-full border-2 border-surface flex items-center justify-center">
-                <span className="material-symbols-outlined text-white text-xs">check</span>
-              </div>
+              <ProfileAvatar
+                src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=300&h=300&fit=crop&auto=format"
+                name="TechHive Nicaragua"
+                type="company"
+                size="xl"
+                rounded="2xl"
+                verified={true}
+              />
             </div>
             <h3 className="font-headline-md text-headline-md text-on-background z-10 font-bold">
-              EcoTech Solutions
+              TechHive Nicaragua
             </h3>
             <p className="font-body-md text-body-md text-on-surface-variant mb-4 z-10">
-              Startup de Energía Renovable
+              Desarrollo de Software & Soluciones Digitales
             </p>
             <div className="flex flex-wrap justify-center gap-2 mb-4 z-10">
               <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold">
-                Sostenibilidad
+                React / Node
               </span>
               <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold">
                 Innovación
@@ -59,7 +62,7 @@ export default function MatchCenterPage() {
               </span>
             </div>
             <Link
-              href="/match-talento"
+              href="/empresa/perfil"
               className="mt-auto w-full border-2 border-primary text-primary py-2.5 rounded-xl font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors z-10 font-bold text-center"
             >
               Ver Perfil Corporativo
@@ -118,32 +121,33 @@ export default function MatchCenterPage() {
           <div className="md:col-span-4 bg-surface-container-lowest rounded-2xl shadow-ambient border border-surface-container p-md flex flex-col items-center text-center relative overflow-hidden hover:shadow-ambient-md transition-all">
             <div className="absolute top-0 left-0 w-full h-20 bg-primary-container/30 z-0 rounded-t-2xl" />
             <div className="z-10 relative mb-4 mt-4">
-              <div className="w-20 h-20 rounded-2xl bg-primary-container text-on-primary-container border-4 border-surface shadow-xs flex items-center justify-center font-bold text-2xl">
-                CM
-              </div>
-              <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-primary rounded-full border-2 border-surface flex items-center justify-center">
-                <span className="material-symbols-outlined text-on-primary text-xs">star</span>
-              </div>
+              <ProfileAvatar
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face&auto=format"
+                name="Alejandro Martínez"
+                type="talent"
+                size="xl"
+                verified={true}
+              />
             </div>
             <h3 className="font-headline-md text-headline-md text-on-background z-10 font-bold">
-              Carlos Mendes
+              Alejandro Martínez
             </h3>
             <p className="font-body-md text-body-md text-on-surface-variant mb-4 z-10">
-              Desarrollador Full-Stack Sr.
+              Desarrollador Full Stack Semi-Senior
             </p>
             <div className="flex flex-wrap justify-center gap-2 mb-4 z-10">
               <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold">
                 React
               </span>
               <span className="bg-secondary-fixed text-on-secondary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold">
-                Node.js
+                Next.js
               </span>
               <span className="bg-primary-fixed text-on-primary-fixed-variant px-3 py-1 rounded-full font-label-sm text-label-sm font-semibold">
-                AWS
+                PostgreSQL
               </span>
             </div>
             <Link
-              href="/talento/dashboard"
+              href="/talento/perfil"
               className="mt-auto w-full border-2 border-primary text-primary py-2.5 rounded-xl font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors z-10 font-bold text-center"
             >
               Ver Perfil de Talento

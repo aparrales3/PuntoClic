@@ -9,6 +9,7 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { LogoutButton } from './LogoutButton';
+import { ProfileAvatar } from './ProfileAvatar';
 
 interface TopAppBarProps {
   /** Show back button */
@@ -62,10 +63,6 @@ export function TopAppBar({
     : isTalent
     ? '/talento/perfil'
     : '/admin/dashboard';
-
-  const defaultAvatar =
-    avatarUrl ||
-    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face&auto=format';
 
   return (
     <>
@@ -313,12 +310,13 @@ export function TopAppBar({
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                   aria-label="Menú de usuario"
                   aria-expanded={dropdownOpen}
-                  className="hover:ring-2 hover:ring-primary transition-all active:scale-95 duration-200 rounded-full focus:outline-none relative w-9 h-9 md:w-10 md:h-10 overflow-hidden shadow-xs border border-outline-variant/50 cursor-pointer flex items-center justify-center bg-primary-container"
+                  className="hover:ring-2 hover:ring-primary transition-all active:scale-95 duration-200 rounded-full focus:outline-none cursor-pointer flex items-center justify-center shadow-xs"
                 >
-                  <img
-                    src={defaultAvatar}
-                    alt="Avatar"
-                    className="w-full h-full object-cover rounded-full"
+                  <ProfileAvatar
+                    src={avatarUrl}
+                    name={isEmpresa ? 'Empresa Aliada' : isInstitucion ? 'Institución Educativa' : 'Usuario'}
+                    type={isEmpresa ? 'company' : isInstitucion ? 'institution' : 'talent'}
+                    size="sm"
                   />
                 </button>
 

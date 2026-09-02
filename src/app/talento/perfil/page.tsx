@@ -9,6 +9,7 @@ import { headers } from 'next/headers';
 import { db } from '@/infrastructure/db/client';
 import { talentProfiles, users } from '@/infrastructure/db/schema';
 import { eq } from 'drizzle-orm';
+import { ProfileAvatar } from '@/components/design-system';
 
 export const metadata: Metadata = {
   title: 'Mi Perfil — Talento PUNTOCLICK',
@@ -103,27 +104,14 @@ export default async function TalentoPerfilPage() {
       <section className="mb-lg animate-fade-in-up">
         <div className="bg-surface-container-low rounded-2xl p-lg border border-surface-variant/40 shadow-ambient">
           <div className="flex flex-col md:flex-row gap-lg items-start">
-            {/* Avatar */}
-            <div className="relative flex-shrink-0">
-              {profile.photoUrl ? (
-                <img
-                  src={profile.photoUrl}
-                  alt={`Foto de perfil de ${displayName}`}
-                  className="w-28 h-28 rounded-full object-cover shadow-md border-4 border-surface"
-                />
-              ) : (
-                <div className="w-28 h-28 rounded-full bg-primary-container flex items-center justify-center shadow-md border-4 border-surface">
-                  <span className="font-headline-xl-mobile text-headline-xl-mobile text-on-primary-container font-bold">
-                    {initials}
-                  </span>
-                </div>
-              )}
-              {isRealUser && (
-                <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center border-2 border-surface">
-                  <span className="material-symbols-outlined text-white text-[14px]">verified</span>
-                </div>
-              )}
-            </div>
+            {/* Avatar with Generic Template Fallback */}
+            <ProfileAvatar
+              src={profile.photoUrl}
+              name={displayName}
+              type="talent"
+              size="2xl"
+              verified={isRealUser}
+            />
 
             {/* Info */}
             <div className="flex-grow">
@@ -196,25 +184,38 @@ export default async function TalentoPerfilPage() {
         {/* Left Column */}
         <div className="md:col-span-2 flex flex-col gap-md">
           {/* Bio */}
-          {profile.bio && (
-            <section className="bg-surface-container-low rounded-xl p-md border border-surface-variant/40 shadow-ambient">
-              <h2 className="font-headline-sm text-headline-sm-mobile text-on-surface mb-sm font-bold flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary">person</span>
-                Sobre mí
-              </h2>
+          <section className="bg-surface-container-low rounded-xl p-md border border-surface-variant/40 shadow-ambient">
+            <h2 className="font-headline-sm text-headline-sm-mobile text-on-surface mb-sm font-bold flex items-center gap-2">
+              <span className="material-symbols-outlined text-primary">person</span>
+              Sobre mí
+            </h2>
+            {profile.bio ? (
               <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
                 {profile.bio}
               </p>
-            </section>
-          )}
+            ) : (
+              <div className="p-4 rounded-lg bg-surface-container/60 border border-dashed border-outline-variant/60 text-center">
+                <p className="font-body-md text-body-md text-on-surface-variant mb-2">
+                  Aún no has agregado una biografía a tu perfil. Cuéntales a las empresas sobre tus fortalezas y metas profesionales.
+                </p>
+                <Link
+                  href="/auth/register/talento?step=1"
+                  className="inline-flex items-center gap-1 text-primary text-label-sm font-semibold hover:underline"
+                >
+                  <span className="material-symbols-outlined text-sm">add</span>
+                  Completar biografía
+                </Link>
+              </div>
+            )}
+          </section>
 
           {/* Skills */}
-          {profile.skills && profile.skills.length > 0 && (
-            <section className="bg-surface-container-low rounded-xl p-md border border-surface-variant/40 shadow-ambient">
-              <h2 className="font-headline-sm text-headline-sm-mobile text-on-surface mb-md font-bold flex items-center gap-2">
-                <span className="material-symbols-outlined text-primary">psychology</span>
-                Habilidades
-              </h2>
+          <section className="bg-surface-container-low rounded-xl p-md border border-surface-variant/40 shadow-ambient">
+            <h2 className="font-headline-sm text-headline-sm-mobile text-on-surface mb-md font-bold flex items-center gap-2">
+              <span className="material-symbols-outlined text-primary">psychology</span>
+              Habilidades
+            </h2>
+            {profile.skills && profile.skills.length > 0 ? (
               <div className="flex flex-wrap gap-sm">
                 {(profile.skills as string[]).map((skill: string) => (
                   <span
@@ -225,8 +226,21 @@ export default async function TalentoPerfilPage() {
                   </span>
                 ))}
               </div>
-            </section>
-          )}
+            ) : (
+              <div className="p-4 rounded-lg bg-surface-container/60 border border-dashed border-outline-variant/60 text-center">
+                <p className="font-body-md text-body-md text-on-surface-variant mb-2">
+                  No has registrado habilidades técnicas o blandas.
+                </p>
+                <Link
+                  href="/auth/register/talento?step=3"
+                  className="inline-flex items-center gap-1 text-primary text-label-sm font-semibold hover:underline"
+                >
+                  <span className="material-symbols-outlined text-sm">add</span>
+                  Agregar habilidades
+                </Link>
+              </div>
+            )}
+          </section>
 
           {/* CV Section */}
           <section className="bg-surface-container-low rounded-xl p-md border border-surface-variant/40 shadow-ambient">
